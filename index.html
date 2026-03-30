@@ -34,7 +34,6 @@
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
   }
 
-  /* ── HEADER ── */
   header {
     position: relative; z-index: 2;
     background: linear-gradient(135deg, var(--orange) 0%, var(--pink) 50%, var(--purple) 100%);
@@ -46,7 +45,6 @@
   header h1 { font-family:'Fredoka One',cursive; font-size:clamp(2rem,6vw,3.2rem); color:white; text-shadow:3px 3px 0 rgba(0,0,0,0.2); margin-top:0.5rem; }
   header p { color:rgba(255,255,255,0.9); font-size:1rem; font-weight:700; margin-top:0.4rem; }
 
-  /* ── GLOBAL VI TOGGLE ── */
   .vi-toggle-wrap {
     position: relative; z-index: 10;
     max-width: 720px; margin: 1.5rem auto 0; padding: 0 1rem;
@@ -63,11 +61,9 @@
   .vi-toggle-btn:hover { transform: scale(1.06); box-shadow: 0 5px 15px rgba(26,111,196,0.5); }
   .vi-toggle-btn .flag { font-size: 1.1rem; }
 
-  /* Vietnamese text spans */
   .vi { display: none; color: #1a6fc4; font-size: 0.88rem; font-weight: 700; font-style: italic; margin-top: 2px; }
   body.show-vi .vi { display: block; }
 
-  /* ── GRAMMAR BOX ── */
   .grammar-box {
     position: relative; z-index: 2;
     max-width: 720px; margin: 1.2rem auto 0;
@@ -93,12 +89,10 @@
   .highlight { color: var(--orange); font-style: bold; font-weight: 800;font-size: larger; }
   .li-content { display: flex; flex-direction: column; }
 
-  /* ── SECTION ── */
   .section { position:relative; z-index:2; max-width:720px; margin:2rem auto; padding:0 1rem; }
   .section-title { font-family:'Fredoka One',cursive; font-size:1.8rem; color:var(--dark); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.6rem; }
   .section-title .num { background:var(--purple); color:white; width:42px; height:42px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; box-shadow:3px 3px 0 rgba(0,0,0,0.15); }
 
-  /* ── QUESTION CARD ── */
   .question-card {
     background: var(--card-bg); border-radius: 20px;
     padding: 1.3rem 1.4rem; margin-bottom: 1rem;
@@ -111,7 +105,6 @@
   .q-text-wrap { flex: 1; min-width: 0; }
   .q-text { font-size:1.05rem; font-weight:700; color:var(--dark); line-height:1.5; }
 
-  /* ── BUTTON ROW ── */
   .btn-row { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.9rem; }
   .audio-btn {
     background: linear-gradient(135deg, var(--blue), #2BB5AB);
@@ -136,7 +129,6 @@
   }
   .show-answer-btn:hover { transform: scale(1.07); }
 
-  /* ── ANSWER BOX (hidden until revealed) ── */
   .answer-reveal {
     display: none; background: #FFF8E7; border: 2px dashed #F59E0B;
     border-radius: 12px; padding: 0.6rem 1rem; margin-bottom: 0.8rem;
@@ -145,7 +137,6 @@
   .answer-reveal.visible { display: block; animation: popIn 0.35s ease forwards; }
   .answer-reveal .vi { color: #1a6fc4; font-size: 0.85rem; margin-top: 3px; }
 
-  /* ── INPUT AREA ── */
   .answer-area { display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap; }
   .answer-input {
     flex: 1; min-width: 170px;
@@ -156,6 +147,7 @@
   }
   .answer-input:focus { border-color: var(--blue); background: white; }
   .answer-input.correct { border-color: var(--green); background: #F0FFF4; color: #1A7A30; }
+  .answer-input.wrong { border-color: var(--pink); background: #FFF0F5; }
   .hint-tag { background:#F3EDFF; color:var(--purple); border-radius:10px; padding:0.3rem 0.7rem; font-size:0.82rem; font-weight:700; border:2px solid #E5D5FF; white-space:nowrap; }
   .check-btn {
     background: var(--green); border: none; border-radius: 10px; color: white;
@@ -172,9 +164,56 @@
     display: flex; align-items: center; gap: 0.35rem;
   }
   .play-answer-btn:hover { transform: scale(1.06); }
-  .feedback { margin-top:0.55rem; font-size:0.93rem; font-weight:800; min-height:1.1rem; }
-  .feedback.ok { color: var(--green); }
-  .feedback.no { color: var(--pink); }
+
+  /* ── CẢI TIẾN: FEEDBACK BOX ── */
+  .feedback-box {
+    margin-top: 0.7rem;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 0.9rem;
+    font-weight: 700;
+    animation: popIn 0.3s ease;
+  }
+  .feedback-box.empty { display: none; }
+  .fb-header {
+    padding: 0.5rem 0.9rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Fredoka One', cursive; font-size: 0.95rem;
+  }
+  .fb-body { padding: 0.5rem 0.9rem 0.7rem; line-height: 1.7; }
+  .feedback-box.ok .fb-header { background: #D1FAE5; color: #065F46; }
+  .feedback-box.ok .fb-body { background: #ECFDF5; color: #065F46; }
+  .feedback-box.no .fb-header { background: #FFE4E6; color: #9F1239; }
+  .feedback-box.no .fb-body { background: #FFF1F2; color: #9F1239; }
+  .feedback-box.warn .fb-header { background: #FEF9C3; color: #854D0E; }
+  .feedback-box.warn .fb-body { background: #FEFCE8; color: #854D0E; }
+
+  /* ── WORD CHIPS ── */
+  .word-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.4rem 0; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    padding: 0.25rem 0.7rem; border-radius: 20px;
+    font-size: 0.88rem; font-weight: 800; border: 2px solid transparent;
+  }
+  .chip.correct { background: #D1FAE5; color: #065F46; border-color: #6EE7B7; }
+  .chip.wrong   { background: #FFE4E6; color: #9F1239; border-color: #FCA5A5; text-decoration: line-through; }
+  .chip.extra   { background: #FEF9C3; color: #854D0E; border-color: #FDE68A; }
+  .chip.missing { background: #EFF6FF; color: #1E40AF; border-color: #BFDBFE; font-style: italic; }
+  .chip.free    { background: #F3EDFF; color: #6D28D9; border-color: #DDD6FE; }
+  .chip.fixed   { background: #F1F5F9; color: #475569; border-color: #CBD5E1; }
+
+  /* ── HINT FORMULA ── */
+  .hint-formula {
+    background: #FFFBEB; border: 2px dashed #F59E0B;
+    border-radius: 10px; padding: 0.55rem 0.9rem; margin-top: 0.5rem;
+    font-size: 0.88rem; font-weight: 700; color: #92400E;
+  }
+  .hint-formula .formula-part { color: #1E40AF; font-weight: 800; }
+  .hint-formula .blank-slot {
+    display: inline-block; background: #FDE68A; color: #92400E;
+    padding: 0 0.5rem; border-radius: 6px; margin: 0 2px;
+    border: 2px solid #F59E0B; font-style: italic;
+  }
 
   /* ── IMAGE CARD ── */
   .img-question-card {
@@ -202,7 +241,7 @@
   .score-text { font-family:'Fredoka One',cursive; color:white; font-size:1.3rem; }
   .stars-earned { font-size:1.8rem; letter-spacing:2px; }
 
-  /* ── KNOWLEDGE SUMMARY ── */
+  /* ── KNOWLEDGE ── */
   .knowledge-section {
     position: relative; z-index: 2;
     max-width: 720px; margin: 0 auto 3rem; padding: 0 1rem;
@@ -224,71 +263,27 @@
   .knowledge-body.open { display: block; animation: fadeDown 0.3s ease; }
   @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
 
-  .kb-block {
-    margin-bottom: 1.4rem; padding-bottom: 1.4rem;
-    border-bottom: 2px dashed #E0F2FE;
-  }
+  .kb-block { margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 2px dashed #E0F2FE; }
   .kb-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-  .kb-title {
-    font-family: 'Fredoka One', cursive; font-size: 1.15rem;
-    color: #0284C7; margin-bottom: 0.7rem;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .kb-row {
-    display: flex; gap: 0.7rem; align-items: flex-start;
-    margin-bottom: 0.5rem; flex-wrap: wrap;
-  }
-  .kb-en {
-    background: #EFF6FF; border: 2px solid #BFDBFE;
-    border-radius: 10px; padding: 0.4rem 0.9rem;
-    font-weight: 800; color: #1E40AF; font-size: 0.95rem;
-    flex: 1; min-width: 180px;
-  }
-  .kb-vi {
-    background: #F0FDF4; border: 2px solid #A7F3D0;
-    border-radius: 10px; padding: 0.4rem 0.9rem;
-    font-weight: 700; color: #065F46; font-size: 0.9rem;
-    flex: 1; min-width: 180px;
-  }
+  .kb-title { font-family: 'Fredoka One', cursive; font-size: 1.15rem; color: #0284C7; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.5rem; }
+  .kb-row { display: flex; gap: 0.7rem; align-items: flex-start; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .kb-en { background: #EFF6FF; border: 2px solid #BFDBFE; border-radius: 10px; padding: 0.4rem 0.9rem; font-weight: 800; color: #1E40AF; font-size: 0.95rem; flex: 1; min-width: 180px; }
+  .kb-vi { background: #F0FDF4; border: 2px solid #A7F3D0; border-radius: 10px; padding: 0.4rem 0.9rem; font-weight: 700; color: #065F46; font-size: 0.9rem; flex: 1; min-width: 180px; }
   .kb-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
   .kb-table th { background: #DBEAFE; color: #1E40AF; font-weight: 800; padding: 0.5rem 0.8rem; text-align: left; font-size: 0.88rem; }
   .kb-table td { padding: 0.45rem 0.8rem; font-size: 0.9rem; font-weight: 700; border-bottom: 1px solid #E0F2FE; }
   .kb-table tr:last-child td { border-bottom: none; }
   .kb-table tr:nth-child(even) td { background: #F8FBFF; }
-  .tag-rule {
-    display: inline-block; background: #FEF3C7; color: #92400E;
-    border-radius: 8px; padding: 0.25rem 0.7rem; font-size: 0.85rem;
-    font-weight: 800; border: 2px solid #FDE68A; margin: 0.15rem;
-  }
-  .tag-vi {
-    display: inline-block; background: #F0FDF4; color: #065F46;
-    border-radius: 8px; padding: 0.25rem 0.7rem; font-size: 0.85rem;
-    font-weight: 800; border: 2px solid #A7F3D0; margin: 0.15rem;
-  }
-  .note-box {
-    background: #FFF7ED; border-left: 4px solid var(--orange);
-    border-radius: 0 12px 12px 0; padding: 0.7rem 1rem; margin-top: 0.7rem;
-    font-size: 0.9rem; font-weight: 700; color: #92400E;
-  }
+  .tag-rule { display: inline-block; background: #FEF3C7; color: #92400E; border-radius: 8px; padding: 0.25rem 0.7rem; font-size: 0.85rem; font-weight: 800; border: 2px solid #FDE68A; margin: 0.15rem; }
+  .tag-vi { display: inline-block; background: #F0FDF4; color: #065F46; border-radius: 8px; padding: 0.25rem 0.7rem; font-size: 0.85rem; font-weight: 800; border: 2px solid #A7F3D0; margin: 0.15rem; }
+  .note-box { background: #FFF7ED; border-left: 4px solid var(--orange); border-radius: 0 12px 12px 0; padding: 0.7rem 1rem; margin-top: 0.7rem; font-size: 0.9rem; font-weight: 700; color: #92400E; }
 
-  /* ── EXERCISE 3: PARTNER TABLE ── */
-  .partner-table-wrap {
-    background: white; border-radius: 20px;
-    border: 3px solid #E0E0E0; box-shadow: 4px 4px 0 #CCC;
-    overflow: hidden; margin-bottom: 1.2rem;
-  }
-  .partner-table {
-    width: 100%; border-collapse: collapse;
-  }
-  .partner-table thead tr {
-    background: linear-gradient(135deg, #6BCB77, #3DA34A);
-  }
-  .partner-table thead th {
-    padding: 0.8rem 0.6rem; font-family: 'Fredoka One', cursive;
-    font-size: 1rem; color: white; text-align: center;
-    border-right: 2px solid rgba(255,255,255,0.3);
-  }
-  .partner-table thead th:first-child { text-align: left; padding-left: 1rem; border-right: 2px solid rgba(255,255,255,0.3); }
+  /* ── EXERCISE 3 ── */
+  .partner-table-wrap { background: white; border-radius: 20px; border: 3px solid #E0E0E0; box-shadow: 4px 4px 0 #CCC; overflow: hidden; margin-bottom: 1.2rem; }
+  .partner-table { width: 100%; border-collapse: collapse; }
+  .partner-table thead tr { background: linear-gradient(135deg, #6BCB77, #3DA34A); }
+  .partner-table thead th { padding: 0.8rem 0.6rem; font-family: 'Fredoka One', cursive; font-size: 1rem; color: white; text-align: center; border-right: 2px solid rgba(255,255,255,0.3); }
+  .partner-table thead th:first-child { text-align: left; padding-left: 1rem; }
   .partner-table thead th:last-child { border-right: none; }
   .partner-table tbody tr { border-bottom: 2px solid #F0F0F0; transition: background 0.15s; }
   .partner-table tbody tr:last-child { border-bottom: none; }
@@ -301,23 +296,12 @@
   .q-label .q-hint { color: #888; font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
   .q-label .q-vi { color: #1a6fc4; font-size: 0.78rem; font-weight: 700; font-style: italic; display: none; margin-top: 2px; }
   body.show-vi .q-label .q-vi { display: block; }
-  .partner-input {
-    width: 100%; border: 2px solid #E0E0E0; border-radius: 10px;
-    padding: 0.5rem 0.7rem; font-family: 'Nunito', sans-serif;
-    font-size: 0.88rem; font-weight: 700; color: var(--dark);
-    outline: none; background: #FAFAFA; transition: border-color 0.2s;
-    resize: none; min-height: 44px;
-  }
+  .partner-input { width: 100%; border: 2px solid #E0E0E0; border-radius: 10px; padding: 0.5rem 0.7rem; font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--dark); outline: none; background: #FAFAFA; transition: border-color 0.2s; resize: none; min-height: 44px; }
   .partner-input:focus { border-color: var(--blue); background: white; }
   .partner-input.correct { border-color: var(--green); background: #F0FFF4; color: #1A7A30; }
   .cell-wrap { display: flex; flex-direction: column; gap: 0.35rem; }
   .cell-btns { display: flex; gap: 0.3rem; flex-wrap: wrap; }
-  .cell-btn {
-    border: none; border-radius: 8px; color: white;
-    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem;
-    padding: 0.28rem 0.6rem; cursor: pointer; transition: transform 0.15s;
-    display: flex; align-items: center; gap: 0.25rem; white-space: nowrap;
-  }
+  .cell-btn { border: none; border-radius: 8px; color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; padding: 0.28rem 0.6rem; cursor: pointer; transition: transform 0.15s; display: flex; align-items: center; gap: 0.25rem; white-space: nowrap; }
   .cell-btn:hover { transform: scale(1.07); }
   .cell-btn.listen { background: linear-gradient(135deg, var(--blue), #2BB5AB); box-shadow: 0 2px 6px rgba(78,205,196,0.4); }
   .cell-btn.speak  { background: linear-gradient(135deg, var(--pink), #E5508A); box-shadow: 0 2px 6px rgba(255,107,157,0.4); }
@@ -326,63 +310,35 @@
   .cell-feedback.ok { color: var(--green); }
   .cell-feedback.no { color: var(--pink); }
 
-  /* question bubble above table */
-  .partner-bubble-wrap {
-    display: flex; justify-content: flex-end; margin-bottom: 0.7rem;
+  /* partner sentence feedback */
+  .cell-pfeedback {
+    margin-top: 4px; font-size: 0.78rem; font-weight: 700;
+    border-radius: 8px; overflow: hidden;
   }
-  .partner-bubble {
-    background: linear-gradient(135deg, var(--blue), #2BB5AB);
-    color: white; border-radius: 20px 20px 4px 20px;
-    padding: 0.6rem 1.2rem; font-weight: 800; font-size: 0.95rem;
-    box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
-    display: flex; align-items: center; gap: 0.5rem;
-  }
+  .cell-pfeedback.ok { background: #D1FAE5; color: #065F46; padding: 4px 7px; }
+  .cell-pfeedback.no { background: #FFE4E6; color: #9F1239; padding: 4px 7px; }
+  .cell-pfeedback.warn { background: #FEF9C3; color: #854D0E; padding: 4px 7px; }
+  .cell-pfeedback.empty { display: none; }
 
-  /* ── EXERCISE 4: GROUP DISCUSSION ── */
-  .group-card {
-    background: white; border-radius: 20px;
-    border: 3px solid #EEE; box-shadow: 4px 4px 0 #DDD;
-    padding: 1.3rem 1.4rem; margin-bottom: 1rem;
-  }
-  .group-instr {
-    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
-    border: 2px solid #F59E0B; border-radius: 14px;
-    padding: 0.8rem 1.1rem; font-weight: 800; color: #92400E;
-    font-size: 0.93rem; margin-bottom: 1.1rem;
-    display: flex; align-items: flex-start; gap: 0.6rem;
-  }
+  .partner-bubble-wrap { display: flex; justify-content: flex-end; margin-bottom: 0.7rem; }
+  .partner-bubble { background: linear-gradient(135deg, var(--blue), #2BB5AB); color: white; border-radius: 20px 20px 4px 20px; padding: 0.6rem 1.2rem; font-weight: 800; font-size: 0.95rem; box-shadow: 3px 3px 0 rgba(0,0,0,0.12); display: flex; align-items: center; gap: 0.5rem; }
+
+  /* ── EXERCISE 4 ── */
+  .group-card { background: white; border-radius: 20px; border: 3px solid #EEE; box-shadow: 4px 4px 0 #DDD; padding: 1.3rem 1.4rem; margin-bottom: 1rem; }
+  .group-instr { background: linear-gradient(135deg, #FEF3C7, #FDE68A); border: 2px solid #F59E0B; border-radius: 14px; padding: 0.8rem 1.1rem; font-weight: 800; color: #92400E; font-size: 0.93rem; margin-bottom: 1.1rem; display: flex; align-items: flex-start; gap: 0.6rem; }
   .chat-bubbles { display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 1.1rem; }
   .bubble-row { display: flex; gap: 0.7rem; align-items: flex-end; }
   .bubble-row.right { flex-direction: row-reverse; }
-  .avatar {
-    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem; border: 3px solid white;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-  .bubble {
-    max-width: 75%; border-radius: 18px; padding: 0.65rem 1rem;
-    font-weight: 700; font-size: 0.92rem; line-height: 1.4;
-    position: relative;
-  }
-  .bubble-row:not(.right) .bubble {
-    background: #F0F9FF; border: 2px solid #BAE6FD; color: #0C4A6E;
-    border-bottom-left-radius: 4px;
-  }
-  .bubble-row.right .bubble {
-    background: linear-gradient(135deg, var(--orange), var(--pink));
-    color: white; border-bottom-right-radius: 4px;
-  }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 3px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+  .bubble { max-width: 75%; border-radius: 18px; padding: 0.65rem 1rem; font-weight: 700; font-size: 0.92rem; line-height: 1.4; position: relative; }
+  .bubble-row:not(.right) .bubble { background: #F0F9FF; border: 2px solid #BAE6FD; color: #0C4A6E; border-bottom-left-radius: 4px; }
+  .bubble-row.right .bubble { background: linear-gradient(135deg, var(--orange), var(--pink)); color: white; border-bottom-right-radius: 4px; }
   .bubble .bubble-vi { font-size: 0.78rem; font-style: italic; opacity: 0.8; margin-top: 3px; display: none; }
   body.show-vi .bubble .bubble-vi { display: block; }
   .bubble-play { background: rgba(255,255,255,0.25); border: none; border-radius: 50%; width: 26px; height: 26px; font-size: 0.7rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-left: 0.4rem; vertical-align: middle; transition: transform 0.15s; }
   .bubble-play:hover { transform: scale(1.2); }
 
-  /* Group result table */
-  .group-result-table {
-    width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden;
-    border: 2px solid #E0E0E0; margin-bottom: 0.8rem;
-  }
+  .group-result-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; border: 2px solid #E0E0E0; margin-bottom: 0.8rem; }
   .group-result-table thead tr { background: linear-gradient(135deg, var(--purple), var(--pink)); }
   .group-result-table thead th { padding: 0.65rem 0.8rem; font-family: 'Fredoka One', cursive; color: white; font-size: 0.9rem; text-align: left; }
   .group-result-table tbody tr { border-bottom: 1px solid #F0F0F0; }
@@ -390,31 +346,35 @@
   .group-result-table tbody tr:nth-child(even) { background: #FAFAFA; }
   .group-result-table tbody td { padding: 0.55rem 0.8rem; font-weight: 700; font-size: 0.88rem; color: var(--dark); }
   .group-result-table tbody td:first-child { color: #7C3AED; font-weight: 800; }
-  .group-input-full {
-    width: 100%; border: 2px solid #E0E0E0; border-radius: 10px;
-    padding: 0.45rem 0.7rem; font-family: 'Nunito', sans-serif;
-    font-size: 0.88rem; font-weight: 700; color: var(--dark);
-    background: #FAFAFA; outline: none; transition: border-color 0.2s;
-  }
+  .group-input-full { width: 100%; border: 2px solid #E0E0E0; border-radius: 10px; padding: 0.45rem 0.7rem; font-family: 'Nunito', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--dark); background: #FAFAFA; outline: none; transition: border-color 0.2s; }
   .group-input-full:focus { border-color: var(--purple); background: white; }
   .group-input-full.correct { border-color: var(--green); background: #F0FFF4; color: #1A7A30; }
   .group-submit-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
-  .group-submit-btn {
-    background: linear-gradient(135deg, var(--purple), var(--pink));
-    border: none; border-radius: 50px; color: white;
-    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem;
-    padding: 0.55rem 1.3rem; cursor: pointer;
-    box-shadow: 0 3px 8px rgba(168,85,247,0.4); transition: transform 0.15s;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
+  .group-submit-btn { background: linear-gradient(135deg, var(--purple), var(--pink)); border: none; border-radius: 50px; color: white; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; padding: 0.55rem 1.3rem; cursor: pointer; box-shadow: 0 3px 8px rgba(168,85,247,0.4); transition: transform 0.15s; display: flex; align-items: center; gap: 0.4rem; }
   .group-submit-btn:hover { transform: scale(1.06); }
   .group-feedback { margin-top: 0.6rem; font-size: 0.93rem; font-weight: 800; min-height: 1rem; }
   .group-feedback.ok { color: var(--green); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes popIn { 0%{transform:scale(0.8);opacity:0} 80%{transform:scale(1.04)} 100%{transform:scale(1);opacity:1} }
+  /* ── FILL-IN-THE-BLANK inline ── */
+  .inline-input {
+    border: none; border-bottom: 3px solid var(--orange);
+    background: transparent; font-family: 'Nunito', sans-serif;
+    font-size: 1rem; font-weight: 700; color: var(--dark);
+    outline: none; padding: 0 4px; width: 200px;
+    transition: border-color 0.2s;
+  }
+  .inline-input:focus { border-color: var(--purple); }
+  .inline-input.correct { border-color: var(--green); color: #1A7A30; }
+  .inline-input.wrong { border-color: var(--pink); color: #9F1239; }
+  .inline-check-btn {
+    background: var(--orange); border: none; border-radius: 8px; color: white;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.82rem;
+    padding: 0.3rem 0.75rem; cursor: pointer; margin-left: 6px;
+    transition: transform 0.15s;
+  }
+  .inline-check-btn:hover { transform: scale(1.06); }
 
-  /* ── RESPONSIVE ── */
+  @keyframes popIn { 0%{transform:scale(0.8);opacity:0} 80%{transform:scale(1.04)} 100%{transform:scale(1);opacity:1} }
   @media (max-width: 520px) {
     .img-item img { width:80px; height:55px; }
     .answer-area { flex-direction:column; align-items:stretch; }
@@ -428,23 +388,20 @@
 
 <div class="stars" id="stars"></div>
 
-<!-- HEADER -->
 <header>
   <span class="header-emoji">🌟</span>
   <h1>Superlatives Fun!</h1>
   <p>Grammar 1 · Unit 5 · So sánh nhất trong tiếng Anh!</p>
 </header>
 
-<!-- GLOBAL VI TOGGLE -->
 <div class="vi-toggle-wrap">
   <button class="vi-toggle-btn" id="viToggleBtn" onclick="toggleVietnamese()">
     <span class="flag">🇻🇳</span> <span id="viToggleLabel">Hiện tiếng Việt</span>
   </button>
 </div>
 
-<!-- GRAMMAR BOX -->
 <div class="grammar-box section">
-  <h2>📖 Grammar Rule – Quy tắc ngữ pháp <br>📖 Superlatives with -est and most</h2>
+  <h2>📖 Grammar Rule – Superlatives with -est and most</h2>
   <button class="play-inline" onclick="playWav(22)">▶</button>
   <ul>
     <li>
@@ -453,7 +410,6 @@
         <span>I think Beauty and the Beast is <span class="highlight">the greatest</span> fairy tale ever.</span>
         <span class="vi">→ Người đẹp và quái thú là câu chuyện cổ tích hay nhất từ trước đến nay.</span>
       </div>
-      <button class="play-inline" onclick="playWav(23)">▶</button>
     </li>
     <li>
       <button class="play-inline" onclick="playWav(2)">▶</button>
@@ -461,7 +417,6 @@
         <span>J.K. Rowling is <span class="highlight">the most talented</span> writer I know.</span>
         <span class="vi">→ J.K. Rowling là nhà văn tài năng nhất tôi biết.</span>
       </div>
-      <button class="play-inline" onclick="playWav(24)">▶</button>
     </li>
     <li>
       <button class="play-inline" onclick="playWav(3)">▶</button>
@@ -469,7 +424,6 @@
         <span>In your opinion, what's <span class="highlight">the funniest</span> movie of all?</span>
         <span class="vi">→ Theo bạn, bộ phim hài nhất trong tất cả là gì?</span>
       </div>
-      <button class="play-inline" onclick="playWav(25)">▶</button>
     </li>
   </ul>
 </div>
@@ -478,32 +432,38 @@
 <div class="section">
   <h2 class="section-title"><span class="num">1</span> Read &amp; Complete the Questions</h2>
 
-  <!-- Q1 -->
+  <!-- Q1 – fill-in inline -->
   <div class="question-card">
     <div class="q-header">
       <div class="q-num">1</div>
       <div class="q-text-wrap">
-        <div class="q-text">Who is <u>the most amazing singer</u> in the world?</div>
+        <div class="q-text">
+          Who is
+          <input class="inline-input" id="fill_q1" placeholder="the most amazing singer">
+          in the world? <span style="color:#aaa;font-size:0.85rem">(amazing / singer)</span>
+        </div>
+        <button class="inline-check-btn" onclick="checkFillBlank('fill_q1','fb_fill_q1','the most amazing singer')">Check ✔</button>
+        <div id="fb_fill_q1" class="feedback-box empty" style="margin-top:0.5rem;"></div>
         <div class="vi">→ Ai là ca sĩ tuyệt vời nhất trên thế giới?</div>
         <button class="play-inline" onclick="playWav(26)">▶</button>
       </div>
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn4" onclick="playWavBtn(4,'qbtn4')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans1','abtn5',5)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans1',5)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans1">
       🗝 <strong>I think … is the most amazing singer in the world!</strong>
       <div class="vi">→ Tôi nghĩ … là ca sĩ tuyệt vời nhất thế giới!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn5" onclick="playWavBtn(5,'abtn5')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(5)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
-      <input class="answer-input" type="text" placeholder="Viết câu trả lời của bạn..." id="a1" />
+      <input class="answer-input" type="text" placeholder="Viết câu trả lời đầy đủ..." id="a1" />
       <span class="hint-tag">amazing / singer</span>
-      <button class="check-btn" onclick="checkAnswer('a1','fb1')">✔ OK</button>
+      <button class="check-btn" onclick="checkSentence('a1','fb1','i think ___ is the most amazing singer in the world')">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('a1')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb1"></div>
+    <div id="fb1" class="feedback-box empty"></div>
   </div>
 
   <!-- Q2 -->
@@ -518,20 +478,20 @@
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn6" onclick="playWavBtn(6,'qbtn6')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans2','abtn7',7)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans2',7)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans2">
       🗝 <strong>In my opinion, … is the coolest athlete!</strong>
       <div class="vi">→ Theo tôi, … là vận động viên ngầu nhất!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn7" onclick="playWavBtn(7,'abtn7')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(7)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
       <input class="answer-input" type="text" placeholder="Viết câu trả lời của bạn..." id="a2" />
       <span class="hint-tag">cool / athlete</span>
-      <button class="check-btn" onclick="checkAnswer('a2','fb2')">✔ OK</button>
+      <button class="check-btn" onclick="checkSentence('a2','fb2','in my opinion, ___ is the coolest athlete')">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('a2')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb2"></div>
+    <div id="fb2" class="feedback-box empty"></div>
   </div>
 
   <!-- Q3 -->
@@ -546,20 +506,20 @@
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn8" onclick="playWavBtn(8,'qbtn8')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans3','abtn9',9)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans3',9)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans3">
       🗝 <strong>In my opinion, the … is the prettiest flower!</strong>
       <div class="vi">→ Theo tôi, hoa … là loài hoa đẹp nhất!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn9" onclick="playWavBtn(9,'abtn9')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(9)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
       <input class="answer-input" type="text" placeholder="Viết câu trả lời của bạn..." id="a3" />
       <span class="hint-tag">pretty / flower</span>
-      <button class="check-btn" onclick="checkAnswer('a3','fb3')">✔ OK</button>
+      <button class="check-btn" onclick="checkSentence('a3','fb3','in my opinion, the ___ is the prettiest flower')">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('a3')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb3"></div>
+    <div id="fb3" class="feedback-box empty"></div>
   </div>
 
   <!-- Q4 -->
@@ -574,20 +534,20 @@
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn10" onclick="playWavBtn(10,'qbtn10')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans4','abtn11',11)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans4',11)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans4">
       🗝 <strong>The most interesting TV show I watch is …!</strong>
       <div class="vi">→ Chương trình TV thú vị nhất tôi xem là …!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn11" onclick="playWavBtn(11,'abtn11')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(11)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
       <input class="answer-input" type="text" placeholder="Viết câu trả lời của bạn..." id="a4" />
       <span class="hint-tag">interesting / TV show</span>
-      <button class="check-btn" onclick="checkAnswer('a4','fb4')">✔ OK</button>
+      <button class="check-btn" onclick="checkSentence('a4','fb4','the most interesting tv show i watch is ___')">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('a4')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb4"></div>
+    <div id="fb4" class="feedback-box empty"></div>
   </div>
 
   <!-- Q5 -->
@@ -602,20 +562,20 @@
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn12" onclick="playWavBtn(12,'qbtn12')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans5','abtn13',13)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans5',13)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans5">
       🗝 <strong>I think … is the funniest movie of all!</strong>
       <div class="vi">→ Tôi nghĩ … là bộ phim hài nhất trong tất cả!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn13" onclick="playWavBtn(13,'abtn13')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(13)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
       <input class="answer-input" type="text" placeholder="Viết câu trả lời của bạn..." id="a5" />
       <span class="hint-tag">funny / movie</span>
-      <button class="check-btn" onclick="checkAnswer('a5','fb5')">✔ OK</button>
+      <button class="check-btn" onclick="checkSentence('a5','fb5','i think ___ is the funniest movie of all')">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('a5')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb5"></div>
+    <div id="fb5" class="feedback-box empty"></div>
   </div>
 
   <!-- Q6 -->
@@ -630,20 +590,20 @@
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn14" onclick="playWavBtn(14,'qbtn14')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans6','abtn15',15)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans6',15)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans6">
       🗝 <strong>In my opinion, … is the most talented TV star!</strong>
       <div class="vi">→ Theo tôi, … là ngôi sao truyền hình tài năng nhất!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn15" onclick="playWavBtn(15,'abtn15')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(15)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
       <input class="answer-input" type="text" placeholder="Viết câu trả lời của bạn..." id="a6" />
       <span class="hint-tag">talented / TV star</span>
-      <button class="check-btn" onclick="checkAnswer('a6','fb6')">✔ OK</button>
+      <button class="check-btn" onclick="checkSentence('a6','fb6','in my opinion, ___ is the most talented tv star')">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('a6')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb6"></div>
+    <div id="fb6" class="feedback-box empty"></div>
   </div>
 </div>
 
@@ -656,37 +616,38 @@
     <span class="keyword-badge">1. big – lớn / to</span>
     <div class="img-row">
       <div class="img-item">
-        <img src="1.jpg" alt="Red car" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#FFD93D;border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2rem;';">
+        <img src="1.jpg" alt="Red car" onerror="this.style.cssText='width:100px;height:70px;background:#FFD93D;border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2rem;';">
         <span class="img-label">red car</span>
       </div>
       <div class="img-item">
-        <img src="2.jpg" alt="Green car" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#6BCB77;border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2rem;';">
+        <img src="2.jpg" alt="Green car" onerror="this.style.cssText='width:100px;height:70px;background:#6BCB77;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">green car</span>
       </div>
       <div class="img-item">
-        <img src="3.jpg" alt="Blue car" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#4ECDC4;border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2rem;';">
+        <img src="3.jpg" alt="Blue car" onerror="this.style.cssText='width:100px;height:70px;background:#4ECDC4;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">blue car</span>
       </div>
     </div>
     <div class="example-sentence">
       <button class="audio-btn" id="qbtn16" onclick="playWavBtn(16,'qbtn16')">🔊 Nghe mẫu</button>
-      <span>The red car is <strong>bigger</strong> than the green car, but the blue car is <strong>the biggest!</strong><button class="play-inline" onclick="playWav(32)">▶</button></span>
+      <span>The red car is <strong>bigger</strong> than the green car, but the blue car is <strong>the biggest!</strong></span>
     </div>
     <div class="vi" style="display:block!important;margin-bottom:0.7rem;">→ Xe đỏ to hơn xe xanh lá, nhưng xe xanh dương là to nhất!</div>
     <div class="btn-row">
-      <button class="show-answer-btn" onclick="toggleAnswer('ans_b1','abtn17',17)">💡 Xem đáp án mẫu</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans_b1',17)">💡 Xem đáp án mẫu</button>
     </div>
     <div class="answer-reveal" id="ans_b1">
       🗝 <strong>The ___ car is bigger than the ___ car, but the ___ car is the biggest!</strong>
       <div class="vi">→ Xe ___ to hơn xe ___, nhưng xe ___ là to nhất!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn17" onclick="playWavBtn(17,'abtn17')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(17)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
-      <input class="answer-input" type="text" placeholder="Viết câu của bạn..." id="b1" />
-      <button class="check-btn" onclick="checkAnswer('b1','fb_b1')">✔ OK</button>
+      <input class="answer-input" type="text" placeholder="The ___ car is bigger than..." id="b1" />
+      <button class="check-btn" onclick="checkMultiBlank('b1','fb_b1','The ___ car is bigger than the ___ car, but the ___ car is the biggest',['red','green','blue'])">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('b1')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb_b1"></div>
+    <div id="fb_b1" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Dùng: <strong>red / green / blue</strong> (theo thứ tự nhỏ → vừa → lớn nhất)</div>
   </div>
 
   <!-- Flowers -->
@@ -694,34 +655,34 @@
     <span class="keyword-badge">2. beautiful – đẹp</span>
     <div class="img-row">
       <div class="img-item">
-        <img src="4.jpg" alt="Red flower" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#FF6B9D;border-radius:12px;border:3px solid #EEE;';">
+        <img src="4.jpg" alt="Red flower" onerror="this.style.cssText='width:100px;height:70px;background:#FF6B9D;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">red flower</span>
       </div>
       <div class="img-item">
-        <img src="5.jpg" alt="Blue flower" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#A855F7;border-radius:12px;border:3px solid #EEE;';">
+        <img src="5.jpg" alt="Blue flower" onerror="this.style.cssText='width:100px;height:70px;background:#A855F7;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">blue flower</span>
       </div>
       <div class="img-item">
-        <img src="6.jpg" alt="Yellow flower" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#FFD93D;border-radius:12px;border:3px solid #EEE;';">
+        <img src="6.jpg" alt="Yellow flower" onerror="this.style.cssText='width:100px;height:70px;background:#FFD93D;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">yellow flower</span>
       </div>
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn18" onclick="playWavBtn(18,'qbtn18')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans_b2','abtn19',19)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans_b2',19)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans_b2">
-      🗝 <strong>The red flower is more beautiful than the blue flower, but the yellow flower is the most beautiful!</strong><button class="play-inline" onclick="playWav(33)">▶</button>
+      🗝 <strong>The red flower is more beautiful than the blue flower, but the yellow flower is the most beautiful!</strong>
       <div class="vi">→ Hoa đỏ đẹp hơn hoa tím, nhưng hoa vàng là đẹp nhất!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn19" onclick="playWavBtn(19,'abtn19')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(19)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
-      <input class="answer-input" type="text" placeholder="Viết câu của bạn..." id="b2" />
-      <button class="check-btn" onclick="checkAnswer('b2','fb_b2')">✔ OK</button>
+      <input class="answer-input" type="text" placeholder="The ___ flower is more beautiful than..." id="b2" />
+      <button class="check-btn" onclick="checkMultiBlank('b2','fb_b2','The ___ flower is more beautiful than the ___ flower, but the ___ flower is the most beautiful',['red','blue','yellow'])">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('b2')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb_b2"></div>
-    <div class="hint-note">💡 Gợi ý: "The ___ flower is more beautiful than ___, but the ___ flower is <strong>the most beautiful!</strong>"</div>
+    <div id="fb_b2" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Dùng: <strong>red / blue / yellow</strong> · "more beautiful than" · "the most beautiful"</div>
   </div>
 
   <!-- Outfits -->
@@ -729,58 +690,191 @@
     <span class="keyword-badge">3. cool – ngầu / sành điệu</span>
     <div class="img-row">
       <div class="img-item">
-        <img src="7.jpg" alt="Blue outfit" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#4ECDC4;border-radius:12px;border:3px solid #EEE;';">
+        <img src="7.jpg" alt="Blue outfit" onerror="this.style.cssText='width:100px;height:70px;background:#4ECDC4;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">blue outfit</span>
       </div>
       <div class="img-item">
-        <img src="8.jpg" alt="White outfit" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#E5E5E5;border-radius:12px;border:3px solid #EEE;';">
+        <img src="8.jpg" alt="White outfit" onerror="this.style.cssText='width:100px;height:70px;background:#E5E5E5;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">white outfit</span>
       </div>
       <div class="img-item">
-        <img src="9.jpg" alt="Orange outfit" onerror="this.src='';this.style.cssText='width:100px;height:70px;background:#FF6B35;border-radius:12px;border:3px solid #EEE;';">
+        <img src="9.jpg" alt="Orange outfit" onerror="this.style.cssText='width:100px;height:70px;background:#FF6B35;border-radius:12px;border:3px solid #EEE;';">
         <span class="img-label">orange outfit</span>
       </div>
     </div>
     <div class="btn-row">
       <button class="audio-btn" id="qbtn20" onclick="playWavBtn(20,'qbtn20')">🔊 Nghe câu hỏi</button>
-      <button class="show-answer-btn" onclick="toggleAnswer('ans_b3','abtn21',21)">💡 Xem đáp án</button>
+      <button class="show-answer-btn" onclick="toggleAnswer('ans_b3',21)">💡 Xem đáp án</button>
     </div>
     <div class="answer-reveal" id="ans_b3">
-      🗝 <strong>The blue outfit is cooler than the white outfit, but the orange outfit is the coolest!</strong><button class="play-inline" onclick="playWav(34)">▶</button>
+      🗝 <strong>The blue outfit is cooler than the white outfit, but the orange outfit is the coolest!</strong>
       <div class="vi">→ Trang phục xanh ngầu hơn trắng, nhưng trang phục cam là ngầu nhất!</div>
-      <div style="margin-top:4px"><button class="audio-btn" id="abtn21" onclick="playWavBtn(21,'abtn21')">🔊 Nghe đáp án</button></div>
+      <div style="margin-top:4px"><button class="audio-btn" onclick="playWav(21)">🔊 Nghe đáp án</button></div>
     </div>
     <div class="answer-area">
-      <input class="answer-input" type="text" placeholder="Viết câu của bạn..." id="b3" />
-      <button class="check-btn" onclick="checkAnswer('b3','fb_b3')">✔ OK</button>
+      <input class="answer-input" type="text" placeholder="The ___ outfit is cooler than..." id="b3" />
+      <button class="check-btn" onclick="checkMultiBlank('b3','fb_b3','The ___ outfit is cooler than the ___ outfit, but the ___ outfit is the coolest',['blue','white','orange'])">✔ OK</button>
       <button class="play-answer-btn" onclick="playTyped('b3')">🔊 Nghe</button>
     </div>
-    <div class="feedback" id="fb_b3"></div>
-    <div class="hint-note">💡 Gợi ý: "The ___ outfit is cooler than ___, but the ___ outfit is <strong>the coolest!</strong>"</div>
+    <div id="fb_b3" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Dùng: <strong>blue / white / orange</strong> · "cooler than" · "the coolest"</div>
+  </div>
+
+  <!-- Buildings -->
+  <div class="img-question-card">
+    <span class="keyword-badge">4. tall – cao</span>
+    <div class="img-row">
+      <div class="img-item">
+        <div style="width:60px;height:90px;background:linear-gradient(180deg,#FDA4AF,#FB7185);border-radius:8px 8px 0 0;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🏠</div>
+        <span class="img-label">house A</span>
+      </div>
+      <div class="img-item">
+        <div style="width:60px;height:130px;background:linear-gradient(180deg,#86EFAC,#22C55E);border-radius:8px 8px 0 0;border:3px solid #EEE;display:flex;align-items:flex-start;padding-top:8px;justify-content:center;font-size:1.5rem;">🏢</div>
+        <span class="img-label">house B</span>
+      </div>
+      <div class="img-item">
+        <div style="width:60px;height:170px;background:linear-gradient(180deg,#93C5FD,#3B82F6);border-radius:8px 8px 0 0;border:3px solid #EEE;display:flex;align-items:flex-start;padding-top:8px;justify-content:center;font-size:1.5rem;">🏗️</div>
+        <span class="img-label">house C</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="show-answer-btn" onclick="toggleAnswer('ans_b4',0)">💡 Xem đáp án</button>
+    </div>
+    <div class="answer-reveal" id="ans_b4">
+      🗝 <strong>House A is taller than house B, but house C is the tallest!</strong>
+      <div class="vi">→ Nhà A cao hơn nhà B, nhưng nhà C là cao nhất!</div>
+    </div>
+    <div class="answer-area">
+      <input class="answer-input" type="text" placeholder="House A is taller than..." id="b4" />
+      <button class="check-btn" onclick="checkMultiBlank('b4','fb_b4','House ___ is taller than house ___, but house ___ is the tallest',['a','b','c'])">✔ OK</button>
+      <button class="play-answer-btn" onclick="playTyped('b4')">🔊 Nghe</button>
+    </div>
+    <div id="fb_b4" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Dùng: <strong>A / B / C</strong> · "taller than" · "the tallest"</div>
+  </div>
+
+  <!-- Animals speed -->
+  <div class="img-question-card">
+    <span class="keyword-badge">5. fast – nhanh</span>
+    <div class="img-row">
+      <div class="img-item">
+        <div style="width:100px;height:70px;background:linear-gradient(135deg,#FEF9C3,#FDE68A);border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2.2rem;">🐢</div>
+        <span class="img-label">turtle</span>
+      </div>
+      <div class="img-item">
+        <div style="width:100px;height:70px;background:linear-gradient(135deg,#D1FAE5,#6EE7B7);border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2.2rem;">🐕</div>
+        <span class="img-label">dog</span>
+      </div>
+      <div class="img-item">
+        <div style="width:100px;height:70px;background:linear-gradient(135deg,#FFE4E6,#FCA5A5);border-radius:12px;border:3px solid #EEE;display:flex;align-items:center;justify-content:center;font-size:2.2rem;">🐆</div>
+        <span class="img-label">cheetah</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="show-answer-btn" onclick="toggleAnswer('ans_b5',0)">💡 Xem đáp án</button>
+    </div>
+    <div class="answer-reveal" id="ans_b5">
+      🗝 <strong>The turtle is faster than the dog, but the cheetah is the fastest!</strong>
+      <div class="vi">→ Con rùa nhanh hơn con chó, nhưng con báo là nhanh nhất!</div>
+    </div>
+    <div class="answer-area">
+      <input class="answer-input" type="text" placeholder="The turtle is faster than..." id="b5" />
+      <button class="check-btn" onclick="checkMultiBlank('b5','fb_b5','The ___ is faster than the ___, but the ___ is the fastest',['turtle','dog','cheetah'])">✔ OK</button>
+      <button class="play-answer-btn" onclick="playTyped('b5')">🔊 Nghe</button>
+    </div>
+    <div id="fb_b5" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Dùng: <strong>turtle / dog / cheetah</strong> · "faster than" · "the fastest"</div>
+  </div>
+
+  <!-- Prices -->
+  <div class="img-question-card">
+    <span class="keyword-badge">6. expensive – đắt tiền</span>
+    <div class="img-row">
+      <div class="img-item">
+        <div style="width:100px;height:70px;background:linear-gradient(135deg,#EDE9FE,#C4B5FD);border-radius:12px;border:3px solid #EEE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+          <span style="font-size:1.6rem;">🍕</span>
+          <span style="font-size:0.72rem;font-weight:800;color:#6D28D9;">$5</span>
+        </div>
+        <span class="img-label">pizza</span>
+      </div>
+      <div class="img-item">
+        <div style="width:100px;height:70px;background:linear-gradient(135deg,#FEF3C7,#FCD34D);border-radius:12px;border:3px solid #EEE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+          <span style="font-size:1.6rem;">👟</span>
+          <span style="font-size:0.72rem;font-weight:800;color:#92400E;">$80</span>
+        </div>
+        <span class="img-label">sneakers</span>
+      </div>
+      <div class="img-item">
+        <div style="width:100px;height:70px;background:linear-gradient(135deg,#DBEAFE,#93C5FD);border-radius:12px;border:3px solid #EEE;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+          <span style="font-size:1.6rem;">💻</span>
+          <span style="font-size:0.72rem;font-weight:800;color:#1E40AF;">$999</span>
+        </div>
+        <span class="img-label">laptop</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="show-answer-btn" onclick="toggleAnswer('ans_b6',0)">💡 Xem đáp án</button>
+    </div>
+    <div class="answer-reveal" id="ans_b6">
+      🗝 <strong>The pizza is more expensive than the sneakers, but the laptop is the most expensive!</strong>
+      <div class="vi">→ Chiếc pizza đắt hơn đôi giày, nhưng chiếc laptop là đắt nhất!</div>
+    </div>
+    <div class="answer-area">
+      <input class="answer-input" type="text" placeholder="The pizza is more expensive than..." id="b6" />
+      <button class="check-btn" onclick="checkMultiBlank('b6','fb_b6','The ___ is more expensive than the ___, but the ___ is the most expensive',['pizza','sneakers','laptop'])">✔ OK</button>
+      <button class="play-answer-btn" onclick="playTyped('b6')">🔊 Nghe</button>
+    </div>
+    <div id="fb_b6" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Dùng: <strong>pizza / sneakers / laptop</strong> · "more expensive than" · "the most expensive"</div>
+  </div>
+
+  <!-- Extra: choose your own -->
+  <div class="img-question-card" style="border-color:var(--purple);box-shadow:4px 4px 0 #C4B5FD;">
+    <span class="keyword-badge" style="background:linear-gradient(135deg,#EDE9FE,#DDD6FE);border-color:var(--purple);color:var(--purple);">🌟 Bonus – Tự sáng tạo!</span>
+    <div style="font-weight:700;font-size:0.95rem;color:var(--dark);margin-bottom:0.8rem;">
+      Chọn <strong>1 tính từ</strong> bất kỳ và viết câu so sánh của riêng bạn! 🎨
+      <div class="vi" style="display:block!important;">→ Chọn bất kỳ tính từ nào và viết câu theo mẫu "A is ___er/more___ than B, but C is the ___est/most___!"</div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.9rem;">
+      <span class="hint-tag" style="cursor:pointer" onclick="document.getElementById('b_bonus').value='The ___ is hotter than the ___, but the ___ is the hottest!'">🌶️ hot</span>
+      <span class="hint-tag" style="cursor:pointer" onclick="document.getElementById('b_bonus').value='The ___ is older than the ___, but the ___ is the oldest!'">👴 old</span>
+      <span class="hint-tag" style="cursor:pointer" onclick="document.getElementById('b_bonus').value='The ___ is heavier than the ___, but the ___ is the heaviest!'">⚖️ heavy</span>
+      <span class="hint-tag" style="cursor:pointer" onclick="document.getElementById('b_bonus').value='The ___ is more powerful than the ___, but the ___ is the most powerful!'">💪 powerful</span>
+      <span class="hint-tag" style="cursor:pointer" onclick="document.getElementById('b_bonus').value='The ___ is more delicious than the ___, but the ___ is the most delicious!'">😋 delicious</span>
+    </div>
+    <div class="answer-area">
+      <input class="answer-input" type="text" placeholder="Viết câu tự do của bạn..." id="b_bonus" style="flex:1"/>
+      <button class="check-btn" style="background:var(--purple);" onclick="checkBonusSentence('b_bonus','fb_b_bonus')">✔ OK</button>
+      <button class="play-answer-btn" onclick="playTyped('b_bonus')">🔊 Nghe</button>
+    </div>
+    <div id="fb_b_bonus" class="feedback-box empty"></div>
+    <div class="hint-note">💡 Gợi ý: bấm vào một thẻ tính từ phía trên để điền mẫu, rồi thay tên vật vào chỗ ___</div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- EXERCISE 3: ASK & ANSWER WITH PARTNER         -->
-<!-- ══════════════════════════════════════════════ -->
+<!-- EXERCISE 3 -->
 <div class="section">
   <h2 class="section-title"><span class="num" style="background:var(--green)">3</span> Ask &amp; Answer with a Partner 👫</h2>
-
   <div class="question-card" style="margin-bottom:1rem;">
     <div class="group-instr">
       <span style="font-size:1.3rem">📋</span>
       <div>
-        <div>Work with a partner. Take turns asking and answering. Complete the chart below!</div>
-        <div class="vi" style="display:block!important;margin-top:3px;">→ Làm việc theo cặp. Thay phiên nhau hỏi và trả lời. Điền vào bảng bên dưới!</div>
+        <div>Work with a partner. Take turns asking and answering. Write full sentences then click <strong>✔ Check</strong> to see feedback!</div>
+        <div class="vi" style="display:block!important;margin-top:3px;">→ Làm việc theo cặp. Viết câu đầy đủ rồi bấm <strong>✔ Check</strong> để kiểm tra cấu trúc câu!</div>
       </div>
     </div>
 
-    <!-- Example bubble -->
+    <!-- legend -->
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem;padding:0.6rem 0.9rem;background:#F8FAFC;border-radius:10px;border:2px solid #E2E8F0;">
+      <span style="font-size:0.82rem;font-weight:700;color:#64748B;">Chú thích:</span>
+      <span class="chip correct" style="font-size:0.78rem;">✓ từ đúng</span>
+      <span class="chip wrong" style="font-size:0.78rem;">✗ sai → gợi ý</span>
+      <span class="chip free" style="font-size:0.78rem;">★ tên tự chọn</span>
+      <span class="chip missing" style="font-size:0.78rem;">… còn thiếu</span>
+    </div>
+
     <div class="partner-bubble-wrap">
-      <div class="partner-bubble">
-        💬 Ví dụ: "Who is the coolest TV star?"
-        <button class="bubble-play" onclick="speakTTS('Who is the coolest TV star?')">▶</button>
-      </div>
+      <div class="partner-bubble">💬 Ví dụ: "Who is the most talented singer?" <button class="bubble-play" onclick="speakTTS('Who is the most talented singer?')">▶</button></div>
     </div>
 
     <div class="partner-table-wrap">
@@ -788,20 +882,25 @@
         <thead>
           <tr>
             <th>Questions</th>
-            <th>Me 🙋</th>
-            <th>My Partner 🤝</th>
+            <th>Me 🙋 – viết &amp; kiểm tra</th>
+            <th>My Partner 🤝 – ghi lại câu trả lời</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Row 1 -->
+
+          <!-- Row 1: who / talented / singer -->
           <tr>
             <td>
               <div class="q-label">
                 <span class="q-num-sm">1</span>who / talented / singer
                 <div class="q-hint">→ "Who is the most talented singer?"</div>
                 <div class="q-vi">→ Ai là ca sĩ tài năng nhất?</div>
-                <!-- <button class="cell-btn listen" style="margin-top:4px;" onclick="speakTTS('Who is the most talented singer?')">🔊 Nghe</button> -->
-                <button class="play-inline" onclick="playWav(52)">▶</button>
+                <button class="play-inline" onclick="speakTTS('Who is the most talented singer?')">▶</button>
+              </div>
+              <div class="p3-q-example" style="margin-top:6px;padding:5px 8px;background:#F0FFF4;border-radius:8px;border:1px solid #A7F3D0;font-size:0.8rem;font-weight:700;color:#065F46;">
+                Mẫu trả lời:<br>
+                "I think <em>[tên]</em> is <strong>the most talented</strong> singer!"<br>
+                "In my opinion, <em>[tên]</em> is <strong>the most talented</strong> singer!"
               </div>
             </td>
             <td>
@@ -809,30 +908,34 @@
                 <textarea class="partner-input" id="p1_me" placeholder="I think … is the most talented singer!" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p1_me')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p1_me','pfb1_me')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p1_me','pfb1_me',['___ is the most talented singer','___ is the most talented singer!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb1_me"></div>
+                <div id="pfb1_me" class="cell-pfeedback"></div>
               </div>
             </td>
             <td>
               <div class="cell-wrap">
-                <textarea class="partner-input" id="p1_pt" placeholder="My partner thinks …" rows="2"></textarea>
+                <textarea class="partner-input" id="p1_pt" placeholder="My partner said: …" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p1_pt')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p1_pt','pfb1_pt')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p1_pt','pfb1_pt',['___ is the most talented singer','___ is the most talented singer!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb1_pt"></div>
+                <div id="pfb1_pt" class="cell-pfeedback"></div>
               </div>
             </td>
           </tr>
-          <!-- Row 2 -->
+
+          <!-- Row 2: who / cool / TV star -->
           <tr>
             <td>
               <div class="q-label">
                 <span class="q-num-sm">2</span>who / cool / TV star
                 <div class="q-hint">→ "Who is the coolest TV star?"</div>
                 <div class="q-vi">→ Ai là ngôi sao TV ngầu nhất?</div>
-                <button class="play-inline" onclick="playWav(53)">▶</button>
+                <button class="play-inline" onclick="speakTTS('Who is the coolest TV star?')">▶</button>
+              </div>
+              <div class="p3-q-example" style="margin-top:6px;padding:5px 8px;background:#F0FFF4;border-radius:8px;border:1px solid #A7F3D0;font-size:0.8rem;font-weight:700;color:#065F46;">
+                Mẫu: "In my opinion, <em>[tên]</em> is <strong>the coolest</strong> TV star!"
               </div>
             </td>
             <td>
@@ -840,30 +943,34 @@
                 <textarea class="partner-input" id="p2_me" placeholder="In my opinion, … is the coolest TV star!" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p2_me')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p2_me','pfb2_me')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p2_me','pfb2_me',['___ is the coolest tv star','___ is the coolest tv star!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb2_me"></div>
+                <div id="pfb2_me" class="cell-pfeedback"></div>
               </div>
             </td>
             <td>
               <div class="cell-wrap">
-                <textarea class="partner-input" id="p2_pt" placeholder="My partner thinks …" rows="2"></textarea>
+                <textarea class="partner-input" id="p2_pt" placeholder="My partner said: …" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p2_pt')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p2_pt','pfb2_pt')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p2_pt','pfb2_pt',['___ is the coolest tv star','___ is the coolest tv star!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb2_pt"></div>
+                <div id="pfb2_pt" class="cell-pfeedback"></div>
               </div>
             </td>
           </tr>
-          <!-- Row 3 -->
+
+          <!-- Row 3: what / interesting / video game -->
           <tr>
             <td>
               <div class="q-label">
                 <span class="q-num-sm">3</span>what / interesting / video game
                 <div class="q-hint">→ "What is the most interesting video game?"</div>
                 <div class="q-vi">→ Trò chơi điện tử thú vị nhất là gì?</div>
-                <button class="play-inline" onclick="playWav(54)">▶</button>
+                <button class="play-inline" onclick="speakTTS('What is the most interesting video game?')">▶</button>
+              </div>
+              <div class="p3-q-example" style="margin-top:6px;padding:5px 8px;background:#F0FFF4;border-radius:8px;border:1px solid #A7F3D0;font-size:0.8rem;font-weight:700;color:#065F46;">
+                Mẫu: "I think <em>[tên game]</em> is <strong>the most interesting</strong> video game!"
               </div>
             </td>
             <td>
@@ -871,30 +978,34 @@
                 <textarea class="partner-input" id="p3_me" placeholder="I think … is the most interesting video game!" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p3_me')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p3_me','pfb3_me')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p3_me','pfb3_me',['___ is the most interesting video game','___ is the most interesting video game!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb3_me"></div>
+                <div id="pfb3_me" class="cell-pfeedback"></div>
               </div>
             </td>
             <td>
               <div class="cell-wrap">
-                <textarea class="partner-input" id="p3_pt" placeholder="My partner thinks …" rows="2"></textarea>
+                <textarea class="partner-input" id="p3_pt" placeholder="My partner said: …" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p3_pt')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p3_pt','pfb3_pt')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p3_pt','pfb3_pt',['___ is the most interesting video game','___ is the most interesting video game!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb3_pt"></div>
+                <div id="pfb3_pt" class="cell-pfeedback"></div>
               </div>
             </td>
           </tr>
-          <!-- Row 4 -->
+
+          <!-- Row 4: who / amazing / actor -->
           <tr>
             <td>
               <div class="q-label">
                 <span class="q-num-sm">4</span>who / amazing / actor
                 <div class="q-hint">→ "Who is the most amazing actor?"</div>
                 <div class="q-vi">→ Ai là diễn viên tuyệt vời nhất?</div>
-                <button class="play-inline" onclick="playWav(55)">▶</button>
+                <button class="play-inline" onclick="speakTTS('Who is the most amazing actor?')">▶</button>
+              </div>
+              <div class="p3-q-example" style="margin-top:6px;padding:5px 8px;background:#F0FFF4;border-radius:8px;border:1px solid #A7F3D0;font-size:0.8rem;font-weight:700;color:#065F46;">
+                Mẫu: "In my opinion, <em>[tên]</em> is <strong>the most amazing</strong> actor!"
               </div>
             </td>
             <td>
@@ -902,30 +1013,34 @@
                 <textarea class="partner-input" id="p4_me" placeholder="In my opinion, … is the most amazing actor!" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p4_me')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p4_me','pfb4_me')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p4_me','pfb4_me',['___ is the most amazing actor','___ is the most amazing actor!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb4_me"></div>
+                <div id="pfb4_me" class="cell-pfeedback"></div>
               </div>
             </td>
             <td>
               <div class="cell-wrap">
-                <textarea class="partner-input" id="p4_pt" placeholder="My partner thinks …" rows="2"></textarea>
+                <textarea class="partner-input" id="p4_pt" placeholder="My partner said: …" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p4_pt')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p4_pt','pfb4_pt')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p4_pt','pfb4_pt',['___ is the most amazing actor','___ is the most amazing actor!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb4_pt"></div>
+                <div id="pfb4_pt" class="cell-pfeedback"></div>
               </div>
             </td>
           </tr>
-          <!-- Row 5 -->
+
+          <!-- Row 5: what / funny / movie -->
           <tr>
             <td>
               <div class="q-label">
                 <span class="q-num-sm">5</span>what / funny / movie
                 <div class="q-hint">→ "What is the funniest movie?"</div>
                 <div class="q-vi">→ Bộ phim hài nhất là gì?</div>
-                <button class="play-inline" onclick="playWav(56)">▶</button>
+                <button class="play-inline" onclick="speakTTS('What is the funniest movie?')">▶</button>
+              </div>
+              <div class="p3-q-example" style="margin-top:6px;padding:5px 8px;background:#F0FFF4;border-radius:8px;border:1px solid #A7F3D0;font-size:0.8rem;font-weight:700;color:#065F46;">
+                Mẫu: "I think <em>[tên phim]</em> is <strong>the funniest</strong> movie!"
               </div>
             </td>
             <td>
@@ -933,30 +1048,34 @@
                 <textarea class="partner-input" id="p5_me" placeholder="I think … is the funniest movie!" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p5_me')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p5_me','pfb5_me')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p5_me','pfb5_me',['___ is the funniest movie','___ is the funniest movie!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb5_me"></div>
+                <div id="pfb5_me" class="cell-pfeedback"></div>
               </div>
             </td>
             <td>
               <div class="cell-wrap">
-                <textarea class="partner-input" id="p5_pt" placeholder="My partner thinks …" rows="2"></textarea>
+                <textarea class="partner-input" id="p5_pt" placeholder="My partner said: …" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p5_pt')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p5_pt','pfb5_pt')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p5_pt','pfb5_pt',['___ is the funniest movie','___ is the funniest movie!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb5_pt"></div>
+                <div id="pfb5_pt" class="cell-pfeedback"></div>
               </div>
             </td>
           </tr>
-          <!-- Row 6 -->
+
+          <!-- Row 6: who / great / athlete -->
           <tr>
             <td>
               <div class="q-label">
                 <span class="q-num-sm">6</span>who / great / athlete
                 <div class="q-hint">→ "Who is the greatest athlete?"</div>
                 <div class="q-vi">→ Ai là vận động viên vĩ đại nhất?</div>
-                <button class="play-inline" onclick="playWav(57)">▶</button>
+                <button class="play-inline" onclick="speakTTS('Who is the greatest athlete?')">▶</button>
+              </div>
+              <div class="p3-q-example" style="margin-top:6px;padding:5px 8px;background:#F0FFF4;border-radius:8px;border:1px solid #A7F3D0;font-size:0.8rem;font-weight:700;color:#065F46;">
+                Mẫu: "In my opinion, <em>[tên]</em> is <strong>the greatest</strong> athlete!"
               </div>
             </td>
             <td>
@@ -964,34 +1083,43 @@
                 <textarea class="partner-input" id="p6_me" placeholder="In my opinion, … is the greatest athlete!" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p6_me')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p6_me','pfb6_me')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p6_me','pfb6_me',['___ is the greatest athlete','___ is the greatest athlete!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb6_me"></div>
+                <div id="pfb6_me" class="cell-pfeedback"></div>
               </div>
             </td>
             <td>
               <div class="cell-wrap">
-                <textarea class="partner-input" id="p6_pt" placeholder="My partner thinks …" rows="2"></textarea>
+                <textarea class="partner-input" id="p6_pt" placeholder="My partner said: …" rows="2"></textarea>
                 <div class="cell-btns">
                   <button class="cell-btn speak" onclick="playTyped('p6_pt')">🔊 Đọc</button>
-                  <button class="cell-btn ok" onclick="checkPartner('p6_pt','pfb6_pt')">✔ OK</button>
+                  <button class="cell-btn ok" style="background:var(--orange);" onclick="checkPartnerSentence('p6_pt','pfb6_pt',['___ is the greatest athlete','___ is the greatest athlete!'])">✔ Check</button>
                 </div>
-                <div class="cell-feedback" id="pfb6_pt"></div>
+                <div id="pfb6_pt" class="cell-pfeedback"></div>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <!-- Progress bar for Exercise 3 -->
+    <div style="margin-top:1rem;padding:0.8rem 1rem;background:#F8FAFC;border-radius:12px;border:2px solid #E2E8F0;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <span style="font-family:'Fredoka One',cursive;color:var(--green);font-size:1rem;">📊 Tiến độ Phần 3</span>
+        <span id="p3_score" style="font-family:'Fredoka One',cursive;color:var(--purple);font-size:1rem;">0 / 12 ô</span>
+      </div>
+      <div style="background:#E2E8F0;border-radius:20px;height:12px;overflow:hidden;">
+        <div id="p3_bar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:20px;transition:width 0.4s ease;"></div>
+      </div>
+      <div id="p3_msg" style="margin-top:6px;font-size:0.85rem;font-weight:700;color:#64748B;min-height:1.1rem;"></div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════ -->
-<!-- EXERCISE 4: GROUP DISCUSSION                   -->
-<!-- ══════════════════════════════════════════════ -->
+<!-- EXERCISE 4 -->
 <div class="section">
   <h2 class="section-title"><span class="num" style="background:var(--pink)">4</span> Group Discussion 🗣️👥</h2>
-
   <div class="group-card">
     <div class="group-instr">
       <span style="font-size:1.3rem">🏆</span>
@@ -1000,96 +1128,39 @@
         <div class="vi" style="display:block!important;margin-top:3px;">→ Làm việc theo nhóm nhỏ. So sánh ý kiến của các bạn. Quyết định ai/cái gì là yêu thích của cả nhóm!</div>
       </div>
     </div>
-
-    <!-- Example dialogue -->
     <div style="margin-bottom:1rem;">
       <div style="font-family:'Fredoka One',cursive; color:var(--purple); font-size:1rem; margin-bottom:0.7rem;">💬 Hội thoại mẫu:</div>
       <div class="chat-bubbles">
         <div class="bubble-row">
           <div class="avatar" style="background:linear-gradient(135deg,var(--pink),var(--orange));">👧</div>
-          <div class="bubble">
-            Who is the most talented singer?
-            <!-- <button class="bubble-play" onclick="speakTTS('Who is the most talented singer?')">▶</button> -->
-            <button class="play-inline" onclick="playWav(58)">▶</button>
-            <div class="bubble-vi">→ Ai là ca sĩ tài năng nhất?</div>
-          </div>
+          <div class="bubble">Who is the most talented singer?<button class="play-inline" onclick="playWav(58)">▶</button><div class="bubble-vi">→ Ai là ca sĩ tài năng nhất?</div></div>
         </div>
         <div class="bubble-row right">
           <div class="avatar" style="background:linear-gradient(135deg,var(--blue),var(--purple));">👦</div>
-          <div class="bubble">
-            Pavarotti.
-            <button class="play-inline" onclick="playWav(59)">▶</button>
-            <div class="bubble-vi">→ Pavarotti.</div>
-          </div>
+          <div class="bubble">Pavarotti.<button class="play-inline" onclick="playWav(59)">▶</button><div class="bubble-vi">→ Pavarotti.</div></div>
         </div>
         <div class="bubble-row">
           <div class="avatar" style="background:linear-gradient(135deg,var(--yellow),var(--orange));">👧</div>
-          <div class="bubble">
-            Who's he?
-            <button class="play-inline" onclick="playWav(60)">▶</button>
-            <div class="bubble-vi">→ Ông ấy là ai vậy?</div>
-          </div>
+          <div class="bubble">Who's he?<button class="play-inline" onclick="playWav(60)">▶</button><div class="bubble-vi">→ Ông ấy là ai vậy?</div></div>
         </div>
         <div class="bubble-row right">
           <div class="avatar" style="background:linear-gradient(135deg,var(--green),var(--blue));">👦</div>
-          <div class="bubble">
-            Are you kidding? He's the greatest opera singer ever!
-            <button class="play-inline" onclick="playWav(61)">▶</button>
-            <div class="bubble-vi">→ Bạn đùa à? Ông ấy là ca sĩ opera vĩ đại nhất từ trước đến nay!</div>
-          </div>
+          <div class="bubble">Are you kidding? He's the greatest opera singer ever!<button class="play-inline" onclick="playWav(61)">▶</button><div class="bubble-vi">→ Bạn đùa à? Ông ấy là ca sĩ opera vĩ đại nhất từ trước đến nay!</div></div>
         </div>
       </div>
     </div>
-
-    <!-- Group favorites table -->
     <div style="font-family:'Fredoka One',cursive; color:var(--orange); font-size:1rem; margin-bottom:0.7rem;">📊 Kết quả nhóm – Group's Favorites:</div>
     <table class="group-result-table">
-      <thead>
-        <tr>
-          <th>Topic</th>
-          <th>Group's Favorite Answer</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Topic</th><th>Group's Favorite Answer</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Most talented singer 🎤</td>
-          <td>
-            <input class="group-input-full" id="g1" type="text" placeholder="The group thinks … is the most talented singer!">
-          </td>
-        </tr>
-        <tr>
-          <td>Coolest TV star 📺</td>
-          <td>
-            <input class="group-input-full" id="g2" type="text" placeholder="The group thinks … is the coolest TV star!">
-          </td>
-        </tr>
-        <tr>
-          <td>Most interesting video game 🎮</td>
-          <td>
-            <input class="group-input-full" id="g3" type="text" placeholder="The group thinks … is the most interesting video game!">
-          </td>
-        </tr>
-        <tr>
-          <td>Most amazing actor 🎬</td>
-          <td>
-            <input class="group-input-full" id="g4" type="text" placeholder="The group thinks … is the most amazing actor!">
-          </td>
-        </tr>
-        <tr>
-          <td>Funniest movie 😂</td>
-          <td>
-            <input class="group-input-full" id="g5" type="text" placeholder="The group thinks … is the funniest movie!">
-          </td>
-        </tr>
-        <tr>
-          <td>Greatest athlete 🏆</td>
-          <td>
-            <input class="group-input-full" id="g6" type="text" placeholder="The group thinks … is the greatest athlete!">
-          </td>
-        </tr>
+        <tr><td>Most talented singer 🎤</td><td><input class="group-input-full" id="g1" type="text" placeholder="The group thinks … is the most talented singer!"></td></tr>
+        <tr><td>Coolest TV star 📺</td><td><input class="group-input-full" id="g2" type="text" placeholder="The group thinks … is the coolest TV star!"></td></tr>
+        <tr><td>Most interesting video game 🎮</td><td><input class="group-input-full" id="g3" type="text" placeholder="The group thinks … is the most interesting video game!"></td></tr>
+        <tr><td>Most amazing actor 🎬</td><td><input class="group-input-full" id="g4" type="text" placeholder="The group thinks … is the most amazing actor!"></td></tr>
+        <tr><td>Funniest movie 😂</td><td><input class="group-input-full" id="g5" type="text" placeholder="The group thinks … is the funniest movie!"></td></tr>
+        <tr><td>Greatest athlete 🏆</td><td><input class="group-input-full" id="g6" type="text" placeholder="The group thinks … is the greatest athlete!"></td></tr>
       </tbody>
     </table>
-
     <div class="group-submit-row">
       <button class="group-submit-btn" onclick="submitGroup()">🎉 Nộp kết quả nhóm!</button>
       <button class="group-submit-btn" style="background:linear-gradient(135deg,var(--blue),#2BB5AB);" onclick="readGroupAloud()">🔊 Đọc tất cả</button>
@@ -1098,7 +1169,6 @@
   </div>
 </div>
 
-<!-- SCORE BAR -->
 <div class="score-bar">
   <div class="score-display">
     <div>
@@ -1117,84 +1187,31 @@
     <span class="toggle-icon" id="kbIcon">▼</span>
   </div>
   <div class="knowledge-body" id="kbBody">
-
-    <!-- Block 1 -->
     <div class="kb-block">
       <div class="kb-title">🎯 1. So sánh nhất (Superlatives) là gì?</div>
-      <p style="font-size:0.95rem;font-weight:700;color:#374151;margin-bottom:0.7rem;">
-        So sánh nhất dùng để nói rằng một vật/người <strong>đứng đầu</strong> trong nhóm — không ai, không cái gì hơn được nó!
-      </p>
-      <div class="kb-row">
-        <div class="kb-en">🇬🇧 "the biggest" = lớn nhất</div>
-        <div class="kb-vi">🇻🇳 Dùng khi so sánh 3 thứ trở lên</div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-en">🇬🇧 "the most beautiful" = đẹp nhất</div>
-        <div class="kb-vi">🇻🇳 Luôn có "THE" đứng trước</div>
-      </div>
+      <p style="font-size:0.95rem;font-weight:700;color:#374151;margin-bottom:0.7rem;">So sánh nhất dùng để nói rằng một vật/người <strong>đứng đầu</strong> trong nhóm — không ai, không cái gì hơn được nó!</p>
+      <div class="kb-row"><div class="kb-en">🇬🇧 "the biggest" = lớn nhất</div><div class="kb-vi">🇻🇳 Dùng khi so sánh 3 thứ trở lên</div></div>
+      <div class="kb-row"><div class="kb-en">🇬🇧 "the most beautiful" = đẹp nhất</div><div class="kb-vi">🇻🇳 Luôn có "THE" đứng trước</div></div>
     </div>
-
-    <!-- Block 2 -->
     <div class="kb-block">
       <div class="kb-title">📏 2. Hai cách tạo so sánh nhất</div>
       <table class="kb-table">
-        <thead>
-          <tr>
-            <th>Loại tính từ</th>
-            <th>Cách làm</th>
-            <th>Ví dụ</th>
-            <th>Nghĩa</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Loại tính từ</th><th>Cách làm</th><th>Ví dụ</th><th>Nghĩa</th></tr></thead>
         <tbody>
-          <tr>
-            <td>Ngắn (1 âm tiết)</td>
-            <td><span class="tag-rule">the + adj + <strong>est</strong></span></td>
-            <td>big → <strong>the biggest</strong><button class="play-inline" onclick="playWav(35)">▶</button></td>
-            <td>to nhất</td>
-          </tr>
-          <tr>
-            <td>Ngắn (tận -y)</td>
-            <td><span class="tag-rule">đổi y→i + <strong>est</strong></span></td>
-            <td>funny → <strong>the funniest</strong><button class="play-inline" onclick="playWav(36)">▶</button></td>
-            <td>hài nhất</td>
-          </tr>
-          <tr>
-            <td>Ngắn (tận -y)</td>
-            <td><span class="tag-rule">đổi y→i + <strong>est</strong></span></td>
-            <td>pretty → <strong>the prettiest</strong><button class="play-inline" onclick="playWav(37)">▶</button></td>
-            <td>xinh nhất</td>
-          </tr>
-          <tr>
-            <td>Dài (2+ âm tiết)</td>
-            <td><span class="tag-rule">the most + <strong>adj</strong></span></td>
-            <td>talented → <strong>the most talented</strong><button class="play-inline" onclick="playWav(38)">▶</button></td>
-            <td>tài năng nhất</td>
-          </tr>
-          <tr>
-            <td>Dài (2+ âm tiết)</td>
-            <td><span class="tag-rule">the most + <strong>adj</strong></span></td>
-            <td>interesting → <strong>the most interesting</strong><button class="play-inline" onclick="playWav(39)">▶</button></td>
-            <td>thú vị nhất</td>
-          </tr>
-          <tr>
-            <td>Dài (2+ âm tiết)</td>
-            <td><span class="tag-rule">the most + <strong>adj</strong></span></td>
-            <td>amazing → <strong>the most amazing</strong><button class="play-inline" onclick="playWav(40)">▶</button></td>
-            <td>tuyệt vời nhất</td>
-          </tr>
+          <tr><td>Ngắn (1 âm tiết)</td><td><span class="tag-rule">the + adj + <strong>est</strong></span></td><td>big → <strong>the biggest</strong><button class="play-inline" onclick="playWav(35)">▶</button></td><td>to nhất</td></tr>
+          <tr><td>Ngắn (tận -y)</td><td><span class="tag-rule">đổi y→i + <strong>est</strong></span></td><td>funny → <strong>the funniest</strong><button class="play-inline" onclick="playWav(36)">▶</button></td><td>hài nhất</td></tr>
+          <tr><td>Ngắn (tận -y)</td><td><span class="tag-rule">đổi y→i + <strong>est</strong></span></td><td>pretty → <strong>the prettiest</strong><button class="play-inline" onclick="playWav(37)">▶</button></td><td>xinh nhất</td></tr>
+          <tr><td>Dài (2+ âm tiết)</td><td><span class="tag-rule">the most + <strong>adj</strong></span></td><td>talented → <strong>the most talented</strong><button class="play-inline" onclick="playWav(38)">▶</button></td><td>tài năng nhất</td></tr>
+          <tr><td>Dài (2+ âm tiết)</td><td><span class="tag-rule">the most + <strong>adj</strong></span></td><td>interesting → <strong>the most interesting</strong><button class="play-inline" onclick="playWav(39)">▶</button></td><td>thú vị nhất</td></tr>
+          <tr><td>Dài (2+ âm tiết)</td><td><span class="tag-rule">the most + <strong>adj</strong></span></td><td>amazing → <strong>the most amazing</strong><button class="play-inline" onclick="playWav(40)">▶</button></td><td>tuyệt vời nhất</td></tr>
         </tbody>
       </table>
       <div class="note-box">⚠️ <strong>Lưu ý:</strong> Tính từ ngắn kết thúc bằng phụ âm + nguyên âm + phụ âm thì nhân đôi phụ âm cuối trước khi thêm -est. Ví dụ: big → bigg<strong>est</strong>, hot → hott<strong>est</strong></div>
     </div>
-
-    <!-- Block 3 -->
     <div class="kb-block">
       <div class="kb-title">📝 3. Từ vựng đã học trong bài</div>
       <table class="kb-table">
-        <thead>
-          <tr><th>Tiếng Anh</th><th>Dạng so sánh nhất</th><th>Tiếng Việt</th></tr>
-        </thead>
+        <thead><tr><th>Tiếng Anh</th><th>Dạng so sánh nhất</th><th>Tiếng Việt</th></tr></thead>
         <tbody>
           <tr><td>big</td><td><strong>the biggest</strong><button class="play-inline" onclick="playWav(41)">▶</button></td><td>to nhất / lớn nhất</td></tr>
           <tr><td>funny</td><td><strong>the funniest</strong><button class="play-inline" onclick="playWav(42)">▶</button></td><td>hài nhất / buồn cười nhất</td></tr>
@@ -1208,75 +1225,41 @@
         </tbody>
       </table>
     </div>
-
-    <!-- Block 4 -->
     <div class="kb-block">
       <div class="kb-title">💬 4. Cách hỏi ý kiến bằng tiếng Anh</div>
-      <div class="kb-row">
-        <div class="kb-en">Who is the most … ?<button class="play-inline" onclick="playWav(50)">▶</button></div>
-        <div class="kb-vi">→ Ai là … nhất?</div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-en">What is the most … ?<button class="play-inline" onclick="playWav(51)">▶</button></div>
-        <div class="kb-vi">→ Cái gì là … nhất?</div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-en">In your opinion, … ?</div>
-        <div class="kb-vi">→ Theo ý bạn / Theo bạn, … ?</div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-en">In my opinion, …</div>
-        <div class="kb-vi">→ Theo tôi, … (khi trả lời)</div>
-      </div>
-      <div class="kb-row">
-        <div class="kb-en">I think …</div>
-        <div class="kb-vi">→ Tôi nghĩ … (khi đưa ra ý kiến)</div>
-      </div>
+      <div class="kb-row"><div class="kb-en">Who is the most … ?<button class="play-inline" onclick="playWav(50)">▶</button></div><div class="kb-vi">→ Ai là … nhất?</div></div>
+      <div class="kb-row"><div class="kb-en">What is the most … ?<button class="play-inline" onclick="playWav(51)">▶</button></div><div class="kb-vi">→ Cái gì là … nhất?</div></div>
+      <div class="kb-row"><div class="kb-en">In your opinion, … ?</div><div class="kb-vi">→ Theo ý bạn / Theo bạn, … ?</div></div>
+      <div class="kb-row"><div class="kb-en">In my opinion, …</div><div class="kb-vi">→ Theo tôi, … (khi trả lời)</div></div>
+      <div class="kb-row"><div class="kb-en">I think …</div><div class="kb-vi">→ Tôi nghĩ … (khi đưa ra ý kiến)</div></div>
     </div>
-
-    <!-- Block 5 -->
     <div class="kb-block">
       <div class="kb-title">🏆 5. Công thức so sánh hơn + so sánh nhất</div>
       <div style="background:#F0FDF4;border:2px solid #A7F3D0;border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:0.6rem;">
         <div style="font-weight:800;color:#065F46;font-size:0.95rem;margin-bottom:0.4rem;">Công thức đầy đủ:</div>
-        <div style="font-size:1rem;font-weight:800;color:#1E40AF;">
-          [A] is <span style="color:#DC2626">–er / more –</span> than [B], but [C] is <span style="color:#7C3AED">the –est / the most –</span>!
-        </div>
-        <div style="font-size:0.88rem;font-weight:700;color:#4B5563;margin-top:0.4rem;">
-          → [A] … hơn [B], nhưng [C] là … nhất!
-        </div>
+        <div style="font-size:1rem;font-weight:800;color:#1E40AF;">[A] is <span style="color:#DC2626">–er / more –</span> than [B], but [C] is <span style="color:#7C3AED">the –est / the most –</span>!</div>
+        <div style="font-size:0.88rem;font-weight:700;color:#4B5563;margin-top:0.4rem;">→ [A] … hơn [B], nhưng [C] là … nhất!</div>
       </div>
-      <div style="font-size:0.9rem;font-weight:700;color:#374151;">
-        Ví dụ từ bài:<br>
-        <span style="color:#DC2626">The red car is <strong>bigger</strong> than the green car</span>, but <span style="color:#7C3AED">the blue car is <strong>the biggest!</strong></span>
-      </div>
+      <div style="font-size:0.9rem;font-weight:700;color:#374151;">Ví dụ từ bài:<br><span style="color:#DC2626">The red car is <strong>bigger</strong> than the green car</span>, but <span style="color:#7C3AED">the blue car is <strong>the biggest!</strong></span></div>
     </div>
-
-    <!-- Block 6 -->
     <div class="kb-block">
       <div class="kb-title">✅ 6. Kiểm tra nhanh – Em có nhớ không?</div>
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.5rem;">
-        <span class="tag-rule">funny → ?</span>
-        <span class="tag-vi">the funniest ✓</span>
-        <span class="tag-rule">beautiful → ?</span>
-        <span class="tag-vi">the most beautiful ✓</span>
-        <span class="tag-rule">cool → ?</span>
-        <span class="tag-vi">the coolest ✓</span>
-        <span class="tag-rule">big → ?</span>
-        <span class="tag-vi">the biggest ✓</span>
-        <span class="tag-rule">talented → ?</span>
-        <span class="tag-vi">the most talented ✓</span>
+        <span class="tag-rule">funny → ?</span><span class="tag-vi">the funniest ✓</span>
+        <span class="tag-rule">beautiful → ?</span><span class="tag-vi">the most beautiful ✓</span>
+        <span class="tag-rule">cool → ?</span><span class="tag-vi">the coolest ✓</span>
+        <span class="tag-rule">big → ?</span><span class="tag-vi">the biggest ✓</span>
+        <span class="tag-rule">talented → ?</span><span class="tag-vi">the most talented ✓</span>
       </div>
-      <div class="note-box">
-        🌟 <strong>Em đã học được:</strong> Cách dùng so sánh nhất (-est / most), từ vựng 9 tính từ, cách hỏi & trả lời ý kiến bằng tiếng Anh, và công thức so sánh kết hợp "hơn + nhất"!
-      </div>
+      <div class="note-box">🌟 <strong>Em đã học được:</strong> Cách dùng so sánh nhất (-est / most), từ vựng 9 tính từ, cách hỏi & trả lời ý kiến bằng tiếng Anh, và công thức so sánh kết hợp "hơn + nhất"!</div>
     </div>
-
   </div>
 </div>
 
 <script>
-/* ── FLOATING STARS ── */
+/* ═══════════════════════════════════════════════
+   FLOATING STARS
+═══════════════════════════════════════════════ */
 const starEmojis = ['⭐','🌟','✨','💫','🌸','🎈','🎵','🎀'];
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 20; i++) {
@@ -1290,71 +1273,19 @@ for (let i = 0; i < 20; i++) {
   starsEl.appendChild(s);
 }
 
-/* ── WAV AUDIO (numbered sequentially) ── */
+/* ═══════════════════════════════════════════════
+   AUDIO
+═══════════════════════════════════════════════ */
 let currentAudio = null;
-
 function playWav(n) {
   if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
   const a = new Audio(n + '.wav');
   currentAudio = a;
   a.play().catch(() => {
-    const texts = {
-      1:"Beauty and the Beast is the greatest fairy tale ever.",
-      2:"J.K. Rowling is the most talented writer I know.",
-      3:"In your opinion, what is the funniest movie of all?",
-      4:"Who is the most amazing singer in the world?",
-      5:"I think ... is the most amazing singer in the world!",
-      6:"In your opinion, who is the coolest athlete?",
-      7:"In my opinion, ... is the coolest athlete!",
-      8:"In your opinion, what is the prettiest flower?",
-      9:"In my opinion, the ... is the prettiest flower!",
-      10:"What is the most interesting TV show you watch?",
-      11:"The most interesting TV show I watch is ...!",
-      12:"What is the funniest movie of all?",
-      13:"I think ... is the funniest movie of all!",
-      14:"In your opinion, who is the most talented TV star?",
-      15:"In my opinion, ... is the most talented TV star!",
-      16:"The red car is bigger than the green car, but the blue car is the biggest!",
-      17:"The blank car is bigger than the blank car, but the blank car is the biggest!",
-      18:"Which is the most beautiful flower?",
-      19:"The red flower is more beautiful than the blue flower, but the yellow flower is the most beautiful!",
-      20:"Which is the coolest outfit?",
-      21:"The blue outfit is cooler than the white outfit, but the orange outfit is the coolest!",
-      22:"Superlatives with est and most",
-      23:"the greatest fairy tale",
-      24:"the most talented",
-      25:"the funniest movie",
-      26:"the most amazing singer",
-      27:"the coolest athlete",
-      28:"the prettiest flower",
-      29:"the most interesting TV show",
-      30:"the funniest movie",
-      31:"the most talented TV star",
-      32:"the biggest",
-      33:"the most beautiful!",
-      34:"the coolest!",
-      35:"big, the biggest",
-      36:"funny, the funniest",
-      37:"pretty, the prettiest",
-      38:"talented, the most talented",
-      39:"interesting, the most interesting",
-      40:"amazing, the most amazing",
-      41:"big, the biggest",
-      42:"funny, the funniest",
-      43:"pretty, the prettiest",
-      44:"cool, the coolest",
-      45:"great, the greatest",
-      46:"amazing, the most amazing",
-      47:"talented, the most talented",
-      48:"interesting, the most interesting",
-      49:"beautiful, the most beautiful",
-      50:"Who is the most?",
-      51:"What is the most?",
-    };
+    const texts = {1:"Beauty and the Beast is the greatest fairy tale ever.",2:"J.K. Rowling is the most talented writer I know.",3:"In your opinion, what is the funniest movie of all?",4:"Who is the most amazing singer in the world?",5:"I think ... is the most amazing singer in the world!",6:"In your opinion, who is the coolest athlete?",7:"In my opinion, ... is the coolest athlete!",8:"In your opinion, what is the prettiest flower?",9:"In my opinion, the ... is the prettiest flower!",10:"What is the most interesting TV show you watch?",11:"The most interesting TV show I watch is ...!",12:"What is the funniest movie of all?",13:"I think ... is the funniest movie of all!",14:"In your opinion, who is the most talented TV star?",15:"In my opinion, ... is the most talented TV star!",16:"The red car is bigger than the green car, but the blue car is the biggest!",17:"The blank car is bigger than the blank car, but the blank car is the biggest!",18:"Which is the most beautiful flower?",19:"The red flower is more beautiful than the blue flower, but the yellow flower is the most beautiful!",20:"Which is the coolest outfit?",21:"The blue outfit is cooler than the white outfit, but the orange outfit is the coolest!",22:"Superlatives with est and most",35:"big, the biggest",36:"funny, the funniest",37:"pretty, the prettiest",38:"talented, the most talented",39:"interesting, the most interesting",40:"amazing, the most amazing",41:"big, the biggest",42:"funny, the funniest",43:"pretty, the prettiest",44:"cool, the coolest",45:"great, the greatest",46:"amazing, the most amazing",47:"talented, the most talented",48:"interesting, the most interesting",49:"beautiful, the most beautiful",50:"Who is the most?",51:"What is the most?"};
     if (texts[n]) speakTTS(texts[n]);
   });
 }
-
 function playWavBtn(n, btnId) {
   const btn = document.getElementById(btnId);
   if (!btn) { playWav(n); return; }
@@ -1362,12 +1293,8 @@ function playWavBtn(n, btnId) {
   btn.classList.add('playing');
   btn.innerHTML = '⏸ Đang phát...';
   playWav(n);
-  setTimeout(() => {
-    btn.classList.remove('playing');
-    btn.innerHTML = orig;
-  }, 3500);
+  setTimeout(() => { btn.classList.remove('playing'); btn.innerHTML = orig; }, 3500);
 }
-
 function speakTTS(text) {
   if (!window.speechSynthesis) return;
   speechSynthesis.cancel();
@@ -1375,7 +1302,6 @@ function speakTTS(text) {
   u.lang = 'en-US'; u.rate = 0.88; u.pitch = 1.1;
   speechSynthesis.speak(u);
 }
-
 function playTyped(inputId) {
   const el = document.getElementById(inputId);
   const val = el ? el.value.trim() : '';
@@ -1383,15 +1309,19 @@ function playTyped(inputId) {
   speakTTS(val);
 }
 
-/* ── SHOW / HIDE ANSWER ── */
-function toggleAnswer(divId, btnId, wavNum) {
+/* ═══════════════════════════════════════════════
+   SHOW / HIDE ANSWER
+═══════════════════════════════════════════════ */
+function toggleAnswer(divId, wavNum) {
   const div = document.getElementById(divId);
-  const isVisible = div.classList.contains('visible');
+  const wasVisible = div.classList.contains('visible');
   div.classList.toggle('visible');
-  if (!isVisible && wavNum) playWav(wavNum);
+  if (!wasVisible && wavNum) playWav(wavNum);
 }
 
-/* ── VIETNAMESE TOGGLE ── */
+/* ═══════════════════════════════════════════════
+   VIETNAMESE TOGGLE
+═══════════════════════════════════════════════ */
 let viOn = false;
 function toggleVietnamese() {
   viOn = !viOn;
@@ -1399,7 +1329,9 @@ function toggleVietnamese() {
   document.getElementById('viToggleLabel').textContent = viOn ? 'Ẩn tiếng Việt' : 'Hiện tiếng Việt';
 }
 
-/* ── KNOWLEDGE ACCORDION ── */
+/* ═══════════════════════════════════════════════
+   KNOWLEDGE ACCORDION
+═══════════════════════════════════════════════ */
 function toggleKnowledge() {
   const body = document.getElementById('kbBody');
   const header = document.getElementById('kbHeader');
@@ -1408,70 +1340,456 @@ function toggleKnowledge() {
   header.classList.toggle('open', open);
 }
 
-/* ── CHECK ANSWER & STARS ── */
+/* ═══════════════════════════════════════════════
+   STARS / SCORE
+═══════════════════════════════════════════════ */
 let starsCount = 0;
 const answered = new Set();
 
-function checkAnswer(inputId, fbId) {
-  const val = document.getElementById(inputId).value.trim();
-  const fb = document.getElementById(fbId);
-  if (!val) {
-    fb.textContent = '✏️ Hãy viết câu trả lời trước nhé!';
-    fb.className = 'feedback no';
-    return;
-  }
-  fb.innerHTML = '🎉 Giỏi lắm! Bấm 🔊 Nghe để nghe câu của bạn!';
-  fb.className = 'feedback ok';
-  document.getElementById(inputId).classList.add('correct');
-  if (!answered.has(inputId)) {
-    answered.add(inputId);
+function awardStar(id) {
+  if (!answered.has(id)) {
+    answered.add(id);
     starsCount = Math.min(starsCount + 1, 9);
     updateStars();
   }
-  speakTTS(val);
 }
-
 function updateStars() {
-  const s = '⭐'.repeat(starsCount) + '☆'.repeat(9 - starsCount);
-  document.getElementById('starsEarned').textContent = s;
+  document.getElementById('starsEarned').textContent =
+    '⭐'.repeat(starsCount) + '☆'.repeat(Math.max(0, 9 - starsCount));
 }
 
-/* ── EXERCISE 3: PARTNER CHECK ── */
-function checkPartner(inputId, fbId) {
-  const val = document.getElementById(inputId).value.trim();
-  const fb = document.getElementById(fbId);
-  if (!val) {
-    fb.textContent = '✏️ Viết câu trả lời trước!';
-    fb.className = 'cell-feedback no';
+/* ═══════════════════════════════════════════════
+   RENDER FEEDBACK BOX
+═══════════════════════════════════════════════ */
+function renderFeedback(fbId, type, title, bodyHtml) {
+  // type: 'ok' | 'no' | 'warn'
+  const icons = { ok: '✅', no: '❌', warn: '⚠️' };
+  const el = document.getElementById(fbId);
+  if (!el) return;
+  el.className = 'feedback-box ' + type;
+  el.innerHTML = `
+    <div class="fb-header">${icons[type]} ${title}</div>
+    <div class="fb-body">${bodyHtml}</div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════
+   HELPER: escape regex special chars
+═══════════════════════════════════════════════ */
+const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/* ═══════════════════════════════════════════════
+   HELPER: format "sentence preview" with coloured chips
+   words: [{text, type}]  type: correct|wrong|extra|missing|free|fixed
+═══════════════════════════════════════════════ */
+function renderChips(words) {
+  const icon = { correct:'✓', wrong:'✗', extra:'?', missing:'…', free:'★', fixed:'' };
+  return '<div class="word-chips">' +
+    words.map(w => `<span class="chip ${w.type}">${icon[w.type] ? icon[w.type]+' ' : ''}${w.text}</span>`).join('') +
+  '</div>';
+}
+
+/* ═══════════════════════════════════════════════
+   [1] checkFillBlank
+   – điền cụm từ cố định vào ô inline (Q1 fill-in)
+   Ví dụ: "the most amazing singer"
+═══════════════════════════════════════════════ */
+function checkFillBlank(inputId, fbId, correctPhrase) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+
+  if (!raw) {
+    input.classList.remove('correct','wrong');
+    renderFeedback(fbId, 'warn', 'Chưa điền!',
+      'Hãy điền câu trả lời vào ô trước nhé! ✏️<br>' +
+      buildFormulaHint(correctPhrase));
     return;
   }
-  fb.textContent = '✅ Tuyệt vời!';
-  fb.className = 'cell-feedback ok';
-  document.getElementById(inputId).classList.add('correct');
-  if (!answered.has(inputId)) {
-    answered.add(inputId);
-    starsCount = Math.min(starsCount + 1, 9);
-    updateStars();
+
+  const user = raw.toLowerCase().replace(/[.,!?]/g, '').trim();
+  const correct = correctPhrase.toLowerCase().trim();
+
+  if (user === correct) {
+    input.classList.add('correct'); input.classList.remove('wrong');
+    awardStar(inputId);
+    renderFeedback(fbId, 'ok', 'Chính xác! 🎉',
+      renderChips(correctPhrase.split(' ').map(w => ({text:w, type:'correct'}))) +
+      '<div style="margin-top:4px">Tuyệt lắm! <strong>' + correctPhrase + '</strong> ✓</div>');
+  } else {
+    input.classList.add('wrong'); input.classList.remove('correct');
+    // word-level diff
+    const cWords = correct.split(' ');
+    const uWords = user.split(' ');
+    const chips = [];
+    const maxLen = Math.max(cWords.length, uWords.length);
+    for (let i = 0; i < maxLen; i++) {
+      const c = cWords[i], u = uWords[i];
+      if (!u)       chips.push({text: c, type: 'missing'});
+      else if (!c)  chips.push({text: u, type: 'extra'});
+      else if (u === c) chips.push({text: u, type: 'correct'});
+      else          chips.push({text: u + ' → ' + c, type: 'wrong'});
+    }
+    renderFeedback(fbId, 'no', 'Chưa đúng, thử lại nhé!',
+      renderChips(chips) +
+      buildFormulaHint(correctPhrase));
   }
-  speakTTS(val);
 }
 
-/* ── EXERCISE 4: GROUP SUBMIT ── */
+/* ═══════════════════════════════════════════════
+   [2] checkSentence
+   – câu tự do có 1 chỗ ___ (subject tự chọn)
+   template: "i think ___ is the most amazing singer in the world"
+═══════════════════════════════════════════════ */
+function checkSentence(inputId, fbId, templateLower) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+
+  if (!raw) {
+    input.classList.remove('correct','wrong');
+    renderFeedback(fbId, 'warn', 'Chưa nhập câu!',
+      'Hãy viết câu trả lời đầy đủ vào ô nhé! ✏️<br>' +
+      buildSentenceHint(templateLower));
+    return;
+  }
+
+  const userLower = raw.toLowerCase().replace(/[!?]$/, '').replace(/\.$/,'').trim();
+
+  // --- split template at ___
+  const parts = templateLower.split('___');
+  if (parts.length !== 2) {
+    renderFeedback(fbId, 'warn', 'Lỗi cấu hình!', 'Template phải có đúng 1 chỗ ___.');
+    return;
+  }
+  const before = parts[0].trim();
+  const after  = parts[1].trim();
+
+  const pattern = new RegExp('^' + esc(before) + '\\s+(.+?)\\s+' + esc(after) + '$', 'i');
+  const match = userLower.match(pattern);
+
+  const warnings = [];
+  if (!/^[A-Z]/.test(raw)) warnings.push('⚠️ Chữ cái đầu câu nên viết hoa');
+
+  if (match) {
+    const subject = match[1].trim();
+    input.classList.add('correct'); input.classList.remove('wrong');
+    awardStar(inputId);
+
+    // build chip display
+    const beforeChips = before.split(' ').map(w => ({text:w, type:'fixed'}));
+    const subjectChips = [{text: subject, type:'free'}];
+    const afterChips   = after.split(' ').map(w => ({text:w, type:'correct'}));
+    const allChips = [...beforeChips, ...subjectChips, ...afterChips];
+
+    let bodyHtml = renderChips(allChips);
+    bodyHtml += '<div style="margin-top:4px;font-size:0.85rem;">🟢 Phần cố định đúng &nbsp;|&nbsp; 🟣 Tên bạn điền vào</div>';
+    if (warnings.length) bodyHtml += '<div style="margin-top:4px;color:#854D0E;">' + warnings.join('<br>') + '</div>';
+
+    renderFeedback(fbId, 'ok', 'Câu đúng cấu trúc! 🎉', bodyHtml);
+  } else {
+    input.classList.add('wrong'); input.classList.remove('correct');
+
+    const startsOk = new RegExp('^' + esc(before), 'i').test(userLower);
+    const endsOk   = new RegExp(esc(after) + '$',  'i').test(userLower);
+
+    let errors = [];
+    if (!startsOk) errors.push('❌ Phần đầu phải là: <strong>' + before + '</strong>');
+    if (!endsOk)   errors.push('❌ Phần cuối phải là: <strong>' + after  + '</strong>');
+    if (startsOk && endsOk) errors.push('❌ Thiếu phần chủ ngữ (tên người / vật) giữa câu');
+    if (!errors.length)     errors.push('❌ Cấu trúc câu chưa đúng');
+
+    renderFeedback(fbId, 'no', 'Cần sửa lại!',
+      errors.join('<br>') + buildSentenceHint(templateLower));
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   [3] checkMultiBlank
+   – câu có nhiều ___ (bài 2 – hình ảnh)
+   template: "The ___ car is bigger than the ___ car, but the ___ car is the biggest"
+   correctWords: ['red','green','blue']  (thứ tự cố định)
+═══════════════════════════════════════════════ */
+function checkMultiBlank(inputId, fbId, template, correctWords) {
+  const input = document.getElementById(inputId);
+  const raw = input.value.trim();
+
+  if (!raw) {
+    input.classList.remove('correct','wrong');
+    renderFeedback(fbId, 'warn', 'Chưa nhập câu!',
+      'Hãy viết câu hoàn chỉnh vào ô nhé! ✏️<br>' +
+      buildMultiHint(template, correctWords));
+    return;
+  }
+
+  const userLower = raw.toLowerCase().replace(/[!?.]/g, '').trim();
+  const tmplLower = template.toLowerCase();
+
+  // Build regex: replace each ___ with a capture group
+  const regexStr = '^' + esc(tmplLower).replace(/___/g, '(\\S+)') + '$';
+  const pattern = new RegExp(regexStr, 'i');
+  const match = userLower.match(pattern);
+
+  const warnings = [];
+  if (!/^[A-Z]/.test(raw)) warnings.push('⚠️ Chữ cái đầu câu nên viết hoa');
+
+  if (!match) {
+    input.classList.add('wrong'); input.classList.remove('correct');
+
+    // Find which fixed parts are wrong
+    const fixedParts = tmplLower.split('___').filter(p => p.trim());
+    const errors = [];
+    fixedParts.forEach(part => {
+      const p = part.trim();
+      if (p && !userLower.includes(p)) {
+        errors.push('❌ Thiếu cụm: <strong>' + part.trim() + '</strong>');
+      }
+    });
+    if (!errors.length) errors.push('❌ Cấu trúc câu chưa khớp với mẫu');
+
+    renderFeedback(fbId, 'no', 'Cấu trúc câu chưa đúng!',
+      errors.join('<br>') + buildMultiHint(template, correctWords));
+    return;
+  }
+
+  const userBlanks = match.slice(1).map(b => b.toLowerCase());
+
+  // Validate each blank
+  const blankResults = correctWords.map((cw, i) => {
+    const uw = userBlanks[i] || '';
+    return { correct: cw, user: uw, ok: uw === cw };
+  });
+
+  const allOk = blankResults.every(b => b.ok);
+
+  // Build visual: walk through template parts and blanks
+  const tmplParts = template.split('___');
+  let chips = [];
+  tmplParts.forEach((part, i) => {
+    // fixed text
+    if (part.trim()) {
+      part.trim().split(' ').forEach(w => { if(w) chips.push({text:w, type:'fixed'}); });
+    }
+    if (i < blankResults.length) {
+      const b = blankResults[i];
+      if (b.ok) {
+        chips.push({text: b.user, type: 'correct'});
+      } else if (!b.user) {
+        chips.push({text: b.correct + ' (thiếu)', type: 'missing'});
+      } else {
+        chips.push({text: b.user + ' → ' + b.correct, type: 'wrong'});
+      }
+    }
+  });
+
+  if (allOk) {
+    input.classList.add('correct'); input.classList.remove('wrong');
+    awardStar(inputId);
+    let body = renderChips(chips);
+    if (warnings.length) body += '<div style="margin-top:4px;color:#854D0E;">' + warnings.join('<br>') + '</div>';
+    renderFeedback(fbId, 'ok', 'Hoàn toàn chính xác! 🎊', body);
+  } else {
+    input.classList.add('wrong'); input.classList.remove('correct');
+    const errorLines = blankResults
+      .filter(b => !b.ok)
+      .map(b => b.user
+        ? `❌ Ô trống: <strong style="color:#9F1239">${b.user}</strong> → đúng là <strong style="color:#065F46">${b.correct}</strong>`
+        : `❌ Chưa điền: cần <strong>${b.correct}</strong>`);
+    let body = renderChips(chips) + '<div style="margin-top:6px;">' + errorLines.join('<br>') + '</div>';
+    body += buildMultiHint(template, correctWords);
+    renderFeedback(fbId, 'no', 'Có vài chỗ cần sửa!', body);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   HINT BUILDERS
+═══════════════════════════════════════════════ */
+function buildFormulaHint(correctPhrase) {
+  return `<div class="hint-formula" style="margin-top:6px;">
+    💡 Cần điền: <span class="formula-part">${correctPhrase}</span>
+  </div>`;
+}
+
+function buildSentenceHint(templateLower) {
+  const parts = templateLower.split('___');
+  let html = '<div class="hint-formula" style="margin-top:6px;">💡 Cấu trúc câu:<br>';
+  html += '<span class="formula-part">' + (parts[0]||'').trim() + '</span> ';
+  html += '<span class="blank-slot">tên người / vật</span> ';
+  html += '<span class="formula-part">' + (parts[1]||'').trim() + '</span>';
+  html += '</div>';
+  return html;
+}
+
+function buildMultiHint(template, words) {
+  const parts = template.split('___');
+  let html = '<div class="hint-formula" style="margin-top:6px;">💡 Công thức:<br>';
+  parts.forEach((part, i) => {
+    if (part.trim()) html += '<span class="formula-part">' + part.trim() + '</span> ';
+    if (i < words.length) html += '<span class="blank-slot">' + words[i] + '</span> ';
+  });
+  html += '<br><small>Gợi ý từ cần điền: <strong>' + words.join(' / ') + '</strong></small></div>';
+  return html;
+}
+
+/* ═══════════════════════════════════════════════
+   EXERCISE 3: PARTNER SENTENCE CHECK
+   templates: array of acceptable endings, ___ = free subject
+   e.g. ['___ is the most talented singer', '___ is the most talented singer!']
+═══════════════════════════════════════════════ */
+const p3answered = new Set();
+
+function checkPartnerSentence(inputId, fbId, templates) {
+  const el = document.getElementById(inputId);
+  const fbEl = document.getElementById(fbId);
+  const raw = el ? el.value.trim() : '';
+
+  if (!raw) {
+    fbEl.className = 'cell-pfeedback warn';
+    fbEl.innerHTML = '✏️ Viết câu trước nhé!';
+    return;
+  }
+
+  const userLower = raw.toLowerCase().replace(/[!?.]/g,'').trim();
+
+  // Try each acceptable template
+  let matched = false;
+  let subject = '';
+  for (const tmpl of templates) {
+    const tmplClean = tmpl.toLowerCase().replace(/[!?.]/g,'').trim();
+    const parts = tmplClean.split('___');
+    if (parts.length !== 2) continue;
+    const before = parts[0].trim();
+    const after  = parts[1].trim();
+
+    // subject can be at very start (no "before") or after "before"
+    let pattern;
+    if (before === '') {
+      pattern = new RegExp('^(.+?)\\s+' + esc(after) + '$', 'i');
+    } else {
+      pattern = new RegExp('^(?:.+\\s+)?(.+?)\\s+' + esc(after) + '$', 'i');
+    }
+    const m = userLower.match(pattern);
+    if (m) {
+      // also check "after" is actually in sentence
+      if (userLower.includes(after)) {
+        matched = true;
+        subject = m[1].trim();
+        break;
+      }
+    }
+  }
+
+  if (matched) {
+    el.classList.add('correct'); el.classList.remove('wrong');
+    fbEl.className = 'cell-pfeedback ok';
+
+    // highlight superlative in the sentence
+    const highlighted = raw.replace(
+      /(the most \w+|the \w+est)/gi,
+      '<strong style="color:#065F46;background:#A7F3D0;padding:0 3px;border-radius:4px;">$1</strong>'
+    );
+    fbEl.innerHTML = '✅ Đúng cấu trúc! ' + highlighted;
+
+    if (!p3answered.has(inputId)) {
+      p3answered.add(inputId);
+      awardStar('p3_' + inputId);
+      updateP3Progress();
+    }
+  } else {
+    el.classList.add('wrong'); el.classList.remove('correct');
+    fbEl.className = 'cell-pfeedback no';
+
+    // Find which superlative keyword is missing
+    const allAfters = templates.map(t => t.toLowerCase().replace(/[!?.]/g,'').split('___')[1]?.trim()).filter(Boolean);
+    const superlativePhrase = allAfters[0] || '';
+    const hasSuperlative = superlativePhrase && userLower.includes(superlativePhrase.toLowerCase());
+
+    if (!hasSuperlative && superlativePhrase) {
+      fbEl.innerHTML = `❌ Thiếu cụm so sánh nhất! Cần có: <strong>"${superlativePhrase}"</strong>`;
+    } else {
+      fbEl.innerHTML = `❌ Cấu trúc chưa đúng. Thêm tên người/vật vào câu nhé!`;
+    }
+  }
+}
+
+function updateP3Progress() {
+  const total = 12; // 6 rows × 2 cols
+  const done = p3answered.size;
+  const pct = Math.round((done / total) * 100);
+  const scoreEl = document.getElementById('p3_score');
+  const barEl   = document.getElementById('p3_bar');
+  const msgEl   = document.getElementById('p3_msg');
+  if (scoreEl) scoreEl.textContent = done + ' / ' + total + ' ô';
+  if (barEl)   barEl.style.width = pct + '%';
+  if (msgEl) {
+    if (done === 0)       msgEl.textContent = 'Bắt đầu viết và kiểm tra nhé! 📝';
+    else if (done < 6)    msgEl.textContent = 'Tốt lắm! Tiếp tục điền thêm nhé 💪';
+    else if (done < 12)   msgEl.textContent = 'Gần xong rồi! Còn ' + (total - done) + ' ô nữa thôi 🌟';
+    else                  msgEl.textContent = '🎊 Xuất sắc! Bạn đã hoàn thành tất cả các câu! ⭐⭐⭐';
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   EXERCISE 2 BONUS: free-form sentence check
+   checks: must contain a comparative AND a superlative pattern
+═══════════════════════════════════════════════ */
+function checkBonusSentence(inputId, fbId) {
+  const el  = document.getElementById(inputId);
+  const raw = el.value.trim();
+
+  if (!raw) {
+    renderFeedback(fbId, 'warn', 'Chưa nhập câu!', 'Hãy viết câu tự do của bạn hoặc bấm vào thẻ gợi ý phía trên! ✏️');
+    return;
+  }
+
+  const lower = raw.toLowerCase();
+
+  // detect comparative: "___er than" OR "more ___ than"
+  const hasComparative = /\w+er\s+than/.test(lower) || /more\s+\w+\s+than/.test(lower);
+  // detect superlative: "the ___est" OR "the most ___"
+  const hasSuperlative = /the\s+\w+est/.test(lower) || /the\s+most\s+\w+/.test(lower);
+
+  const issues = [];
+  if (!hasComparative) issues.push('❌ Thiếu dạng <strong>so sánh hơn</strong>: dùng <em>"___er than"</em> hoặc <em>"more ___ than"</em>');
+  if (!hasSuperlative) issues.push('❌ Thiếu dạng <strong>so sánh nhất</strong>: dùng <em>"the ___est"</em> hoặc <em>"the most ___"</em>');
+  if (!/but/i.test(lower)) issues.push('⚠️ Gợi ý: thêm <em>"but"</em> để nối hai vế câu');
+
+  if (issues.length === 0) {
+    el.classList.add('correct'); el.classList.remove('wrong');
+    awardStar(inputId);
+    // highlight the key parts
+    let highlighted = raw
+      .replace(/(the most \w+|the \w+est)/gi, '<strong style="color:#7C3AED;background:#EDE9FE;padding:0 3px;border-radius:4px;">$1</strong>')
+      .replace(/(\w+er than|more \w+ than)/gi, '<strong style="color:#DC2626;background:#FFE4E6;padding:0 3px;border-radius:4px;">$1</strong>');
+    renderFeedback(fbId, 'ok', 'Câu tuyệt vời! 🎊',
+      '<div style="line-height:1.8">' + highlighted + '</div>' +
+      '<div style="margin-top:4px;font-size:0.82rem;">🔴 So sánh hơn &nbsp;|&nbsp; 🟣 So sánh nhất</div>');
+  } else {
+    el.classList.add('wrong'); el.classList.remove('correct');
+    renderFeedback(fbId, 'no', 'Câu chưa đầy đủ!',
+      issues.join('<br>') +
+      '<div class="hint-formula" style="margin-top:8px;">💡 Mẫu: <span class="formula-part">The ___ is</span> <span class="blank-slot">___er / more ___</span> <span class="formula-part">than the ___, but the ___ is</span> <span class="blank-slot">the ___est / the most ___</span></div>');
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   UPDATE: expand star pool for new exercises
+═══════════════════════════════════════════════ */
+function updateStars() {
+  const maxStars = 20;
+  const filled = Math.min(starsCount, maxStars);
+  document.getElementById('starsEarned').textContent =
+    '⭐'.repeat(filled) + '☆'.repeat(Math.max(0, Math.min(9, maxStars - filled)));
+}
+
+/* ═══════════════════════════════════════════════
+   EXERCISE 4: GROUP
+═══════════════════════════════════════════════ */
 function submitGroup() {
   const ids = ['g1','g2','g3','g4','g5','g6'];
   let filled = 0;
   ids.forEach(id => {
     const val = document.getElementById(id).value.trim();
-    if (val) {
-      filled++;
-      document.getElementById(id).classList.add('correct');
-      if (!answered.has(id)) {
-        answered.add(id);
-        starsCount = Math.min(starsCount + 1, 9);
-      }
-    }
+    if (val) { filled++; document.getElementById(id).classList.add('correct'); awardStar(id); }
   });
-  updateStars();
   const fb = document.getElementById('gfb');
   if (filled === 0) {
     fb.textContent = '✏️ Nhóm chưa điền câu nào cả!';
@@ -1483,24 +1801,14 @@ function submitGroup() {
 }
 
 function readGroupAloud() {
-  const labels = [
-    'The most talented singer in our group is',
-    'The coolest TV star in our group is',
-    'The most interesting video game in our group is',
-    'The most amazing actor in our group is',
-    'The funniest movie in our group is',
-    'The greatest athlete in our group is'
-  ];
+  const labels = ['The most talented singer in our group is','The coolest TV star in our group is','The most interesting video game in our group is','The most amazing actor in our group is','The funniest movie in our group is','The greatest athlete in our group is'];
   const ids = ['g1','g2','g3','g4','g5','g6'];
   let sentences = [];
   ids.forEach((id, i) => {
     const val = document.getElementById(id).value.trim();
     if (val) sentences.push(labels[i] + ' ' + val);
   });
-  if (sentences.length === 0) {
-    speakTTS('Please fill in the group answers first!');
-    return;
-  }
+  if (sentences.length === 0) { speakTTS('Please fill in the group answers first!'); return; }
   speakTTS(sentences.join('. '));
 }
 </script>
